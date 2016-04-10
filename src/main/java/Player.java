@@ -3,12 +3,13 @@
  */
 
 public abstract class Player {
-    private CellContent playerSide;
+     CellContent playerSide;
+     Board board;
 
 
-    public Player(CellContent playerSide) {
+    public Player(Board board, CellContent playerSide) {
+        this.board = board;
         this.playerSide = playerSide;
-
     }
 
     public abstract int[] getNextMoves();

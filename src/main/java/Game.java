@@ -6,6 +6,7 @@ public class Game {
     private Board board;
     private Player playerCross;
     private Player playerZero;
+    private GameState gameState;
 
 
     public Game(Board board) {
@@ -14,30 +15,54 @@ public class Game {
 
 
     public void startGame() {
-        setUpPleers();
+        setUpPleers(); //now cross player = AI
+        gameState = GameState.PLAYING;
 
+        int[] tmp = new int[2];
+        int[] tmp2 = new int[2];
+
+do {
+    int[] crossNextMoves = playerCross.getNextMoves();
+    board.cells[crossNextMoves[0]][crossNextMoves[1]].setContent(playerCross.getPlayerSide());
+    board.print();
+
+
+    board.isWin(CellContent.CROSS);
+
+    int[] zeroNextMoves = playerZero.getNextMoves();
+    board.cells[zeroNextMoves[0]][zeroNextMoves[1]].setContent(playerZero.getPlayerSide());
+    board.print();
+    System.out.println(board.qty);
+}while (gameState == GameState.PLAYING);
+        System.out.println(gameState.toString() + " win buy");
 
     }
 
 
     private void setUpPleers() {
         //ask user about side
-        CellContent answer = CellContent.ZERO;
+        CellContent answer = CellContent.CROSS;
         //--------------
 
         if (answer == CellContent.CROSS) {
-            playerCross = new HumanPlayer(CellContent.CROSS);
-            playerZero = new AiMinMaxPlayer(CellContent.ZERO);
-        } else {
-            playerCross = new AiMinMaxPlayer(CellContent.CROSS);
-            playerZero = new HumanPlayer(CellContent.ZERO);
+            playerCross = new HumanPlayer(board, CellContent.CROSS);
+            playerZero = new AiMinMaxPlayer(board, CellContent.ZERO);
+        } else if (answer == CellContent.ZERO) {
+            playerCross = new AiMinMaxPlayer(board, CellContent.CROSS);
+            playerZero = new HumanPlayer(board, CellContent.ZERO);
         }
     }
 
-    private GameState checkGameStatus() {
-
-
-        return GameState.DRAW;
+    private void gameStatus() {
+        if (board.isWin(CellContent.CROSS)) {
+            gameState = GameState.CROSS_WIN;
+        } else if (board.isWin(CellContent.ZERO)) {
+            gameState = GameState.ZERO_WIN;
+        } else if (board.getEmptyCells().size() == 0) {
+            gameState = GameState.DRAW;
+        } else {
+            gameState = GameState.PLAYING;
+        }
     }
 
 }
