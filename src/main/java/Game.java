@@ -32,7 +32,7 @@ do {
     int[] zeroNextMoves = playerZero.getNextMoves();
     board.cells[zeroNextMoves[0]][zeroNextMoves[1]].setContent(playerZero.getPlayerSide());
     board.print();
-    System.out.println(board.qty);
+
 }while (gameState == GameState.PLAYING);
         System.out.println(gameState.toString() + " win buy");
 
@@ -41,7 +41,7 @@ do {
 
     private void setUpPleers() {
         //ask user about side
-        CellContent answer = CellContent.CROSS;
+        CellContent answer = CellContent.ZERO;
         //--------------
 
         if (answer == CellContent.CROSS) {

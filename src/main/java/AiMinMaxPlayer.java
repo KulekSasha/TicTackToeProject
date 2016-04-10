@@ -24,35 +24,34 @@ public class AiMinMaxPlayer extends Player {
     private int[] minimaxCross(int depth, CellContent player) {
         List<Cell> emptyCells = this.board.getEmptyCells();
 
-        board.qty++;
 
-        int[] tmp = new int[3]; // score, row, col
+        int[] tmp = new int[3];
         int[] result = new int[3];
         result[0] = (this.playerSide == player) ? Integer.MIN_VALUE : Integer.MAX_VALUE; //best score
         int currentScore;
 
         if (board.isWin(player)) {
-            if (playerSide == player){
-                return new int[]{1};
-            }else {
-                return new int[]{-1};
+            if (playerSide == player) {
+                return new int[]{depth + 10};
+            } else {
+                return new int[]{depth - 10};
             }
-        }else if (!board.hasEmptyCell()){
+        } else if (!board.hasEmptyCell()) {
             return new int[]{0};
         }
 
         for (Cell cell : emptyCells) {
-            cell.setContent(player); // do new step
+            cell.setContent(player);
 
             if (playerSide == player) {
-                tmp[0] = minimaxCross(depth +1, oppositePlayer)[0];
+                tmp[0] = minimaxCross(depth + 1, oppositePlayer)[0];
                 if (tmp[0] > result[0]) {
                     result[0] = tmp[0];
                     result[1] = cell.getRow();
                     result[2] = cell.getCol();
                 }
-            } else if (playerSide != player){
-                tmp[0] = minimaxCross(depth +1, playerSide)[0];
+            } else if (playerSide != player) {
+                tmp[0] = minimaxCross(depth + 1, playerSide)[0];
                 if (tmp[0] < result[0]) {
                     result[0] = tmp[0];
                     result[1] = tmp[1];
@@ -60,10 +59,8 @@ public class AiMinMaxPlayer extends Player {
                 }
             }
 
-            cell.setContent(CellContent.EMPTY); //roll-back
+            cell.setContent(CellContent.EMPTY);
         }
-
-
         return result;
     }
 

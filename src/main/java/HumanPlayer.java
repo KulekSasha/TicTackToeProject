@@ -15,9 +15,17 @@ public class HumanPlayer extends Player {
     public int[] getNextMoves() {
         Scanner scanner = new Scanner(System.in);
 
-        int i = scanner.nextInt();
-        int j = scanner.nextInt();
+        int row = 0;
+        int col = 0;
+        do {
+            System.out.println("plz enter:");
+            row = scanner.nextInt()-1;
+            col = scanner.nextInt()-1;
+        } while (!isEmptyCell(row, col));
+        return new int[]{row, col};
+    }
 
-        return new int[]{i,j};
+    private boolean isEmptyCell(int row, int col) {
+        return board.cells[row][col].getContent() == CellContent.EMPTY ? true : false;
     }
 }

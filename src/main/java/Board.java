@@ -6,10 +6,10 @@ import java.util.List;
  */
 
 public class Board {
-    private static final int ROWS = 3;
-    private static final int COLS = 3;
+    public static final int ROWS = 3;
+    public static final int COLS = 3;
 
-    static int qty = 0;
+
 
     Cell[][] cells;
 
