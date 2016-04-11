@@ -1,5 +1,7 @@
 package com.goit.gojavaonline.tictactoe;
 
+import java.util.Scanner;
+
 /**
  * Created by SashaKulek on 07/04/2016.
  */
@@ -17,7 +19,7 @@ public class Game {
 
 
     public void startGame() {
-        setUpPleers(); //now cross player = AI
+        setUpPlayers(); //now cross player = AI
         gameState = GameState.PLAYING;
 
         int[] tmp = new int[2];
@@ -48,10 +50,35 @@ public class Game {
     }
 
 
-    private void setUpPleers() {
+    private void setUpPlayers() {
+
         //ask user about side
-        CellContent answer = CellContent.ZERO;
-        //--------------
+        CellContent answer = null;
+        boolean iterator = true;
+
+        System.out.println("Welcome to a tick-tack-toe game!\n" +
+                "What do you prefer to play with: crosses or zeroes (type CROSS or ZERO, QUIT for quit)\n");
+
+        while (iterator) {
+
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
+
+            if ("CROSS".equals(input)) {
+                answer = CellContent.CROSS;
+                break;
+
+            } else if ("ZERO".equals(input)) {
+                answer = CellContent.ZERO;
+                break;
+
+            } else if ("QUIT".equals(input)){
+                System.exit(0);
+
+            } else {
+                System.out.println("Please, make your choice");
+            }
+        }
 
         if (answer == CellContent.CROSS) {
             playerCross = new HumanPlayer(board, CellContent.CROSS);
