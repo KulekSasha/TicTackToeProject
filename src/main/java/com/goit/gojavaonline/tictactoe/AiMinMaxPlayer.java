@@ -1,3 +1,5 @@
+package com.goit.gojavaonline.tictactoe;
+
 import java.util.List;
 
 /**
@@ -5,8 +7,8 @@ import java.util.List;
  */
 
 public class AiMinMaxPlayer extends Player {
-    //private CellContent playerSidde;
-    // private Board board;
+    //private com.goit.gojavaonline.tictactoe.CellContent playerSidde;
+    // private com.goit.gojavaonline.tictactoe.Board board;
     private int depthLevel;
     private CellContent oppositePlayer = getOppositePlayer(playerSide);
 

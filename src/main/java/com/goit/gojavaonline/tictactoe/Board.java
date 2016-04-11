@@ -1,3 +1,5 @@
+package com.goit.gojavaonline.tictactoe;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +49,9 @@ public class Board {
     private boolean hasHorizontalLine(CellContent cellContent){
         boolean hasLine = true;
         for(int row = 0; row < ROWS; row++){
+            hasLine = true;
             for(int col = 0; col < COLS; col++){
+                //System.out.println("cells[ "+row +" ][ "+ col + " ] == " + cells[row][col].getContent());
                 if(cells[row][col].getContent() != cellContent){
                     hasLine = false;
                     break;
@@ -63,6 +67,7 @@ public class Board {
     private boolean hasVerticalLine(CellContent cellContent){
         boolean hasLine = true;
         for(int col = 0; col < COLS; col++){
+            hasLine = true;
             for(int row = 0; row < ROWS; row++){
                 if(cells[row][col].getContent() != cellContent){
                     hasLine = false;

@@ -1,3 +1,5 @@
+package com.goit.gojavaonline.tictactoe;
+
 /**
  * Created by SashaKulek on 07/04/2016.
  */

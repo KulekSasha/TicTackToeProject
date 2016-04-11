@@ -1,3 +1,5 @@
+package com.goit.gojavaonline.tictactoe;
+
 import java.util.Scanner;
 
 /**
