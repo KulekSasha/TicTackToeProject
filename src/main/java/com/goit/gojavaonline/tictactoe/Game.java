@@ -19,7 +19,7 @@ public class Game {
 
 
     public void startGame() {
-        setUpPlayers(); //now cross player = AI
+        setUpPlayers();
         gameState = GameState.PLAYING;
 
         int[] tmp = new int[2];
@@ -45,6 +45,7 @@ public class Game {
             }
 
         } while (gameState == GameState.PLAYING);
+
         System.out.println(gameState.toString() + " win buy");
 
     }
