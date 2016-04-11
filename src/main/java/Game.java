@@ -21,19 +21,26 @@ public class Game {
         int[] tmp = new int[2];
         int[] tmp2 = new int[2];
 
-do {
-    int[] crossNextMoves = playerCross.getNextMoves();
-    board.cells[crossNextMoves[0]][crossNextMoves[1]].setContent(playerCross.getPlayerSide());
-    board.print();
+        do {
+            int[] crossNextMoves = playerCross.getNextMoves();
+            board.cells[crossNextMoves[0]][crossNextMoves[1]].setContent(playerCross.getPlayerSide());
+            board.print();
 
+            if(board.isWin(CellContent.CROSS)){
+                gameState= GameState.CROSS_WIN;
+                break;
+            }
 
-    board.isWin(CellContent.CROSS);
+            int[] zeroNextMoves = playerZero.getNextMoves();
+            board.cells[zeroNextMoves[0]][zeroNextMoves[1]].setContent(playerZero.getPlayerSide());
+            board.print();
 
-    int[] zeroNextMoves = playerZero.getNextMoves();
-    board.cells[zeroNextMoves[0]][zeroNextMoves[1]].setContent(playerZero.getPlayerSide());
-    board.print();
+            if(board.isWin(CellContent.ZERO)){
+                gameState = GameState.ZERO_WIN;
+                break;
+            }
 
-}while (gameState == GameState.PLAYING);
+        } while (gameState == GameState.PLAYING);
         System.out.println(gameState.toString() + " win buy");
 
     }

@@ -44,22 +44,61 @@ public class Board {
         return listEmptyCells;
     }
 
-    public boolean isWin(CellContent playerSide) {
-        if ((cells[0][0].getContent() == playerSide && cells[0][1].getContent() == playerSide && cells[0][2].getContent() == playerSide) ||
-                (cells[1][0].getContent() == playerSide && cells[1][1].getContent() == playerSide && cells[1][2].getContent() == playerSide) ||
-                (cells[2][0].getContent() == playerSide && cells[2][1].getContent() == playerSide && cells[2][2].getContent() == playerSide) ||
-
-                (cells[0][0].getContent() == playerSide && cells[1][0].getContent() == playerSide && cells[2][0].getContent() == playerSide) ||
-                (cells[0][1].getContent() == playerSide && cells[1][1].getContent() == playerSide && cells[2][1].getContent() == playerSide) ||
-                (cells[0][2].getContent() == playerSide && cells[1][2].getContent() == playerSide && cells[2][2].getContent() == playerSide) ||
-
-                (cells[0][0].getContent() == playerSide && cells[1][1].getContent() == playerSide && cells[2][2].getContent() == playerSide) ||
-                (cells[2][0].getContent() == playerSide && cells[1][1].getContent() == playerSide && cells[0][2].getContent() == playerSide)
-                ) {
-            return true;
-        } else {
-            return false;
+    private boolean hasHorizontalLine(CellContent cellContent){
+        boolean hasLine = true;
+        for(int row = 0; row < ROWS; row++){
+            for(int col = 0; col < COLS; col++){
+                if(cells[row][col].getContent() != cellContent){
+                    hasLine = false;
+                    break;
+                }
+            }
+            if(hasLine){
+                break;
+            }
         }
+        return hasLine;
+    }
+
+    private boolean hasVerticalLine(CellContent cellContent){
+        boolean hasLine = true;
+        for(int col = 0; col < COLS; col++){
+            for(int row = 0; row < ROWS; row++){
+                if(cells[row][col].getContent() != cellContent){
+                    hasLine = false;
+                    break;
+                }
+            }
+            if(hasLine){
+                break;
+            }
+        }
+        return hasLine;
+    }
+
+    private boolean hasDiagonalLine(CellContent cellContent){
+        boolean hasDiagonalLine = true;
+        for(int cellIndex = 0; cellIndex < Math.min(ROWS, COLS); cellIndex++){
+            hasDiagonalLine = cells[cellIndex][cellIndex].getContent() == cellContent;
+            if (!hasDiagonalLine){
+                break;
+            }
+        }
+        if(hasDiagonalLine){
+            return true;
+        }
+        int rowIndex = 0;
+        for(int colIndex = Math.min(ROWS, COLS)-1; colIndex >= 0; colIndex--){
+            hasDiagonalLine = cells[rowIndex++][colIndex].getContent() == cellContent;
+            if (!hasDiagonalLine){
+                break;
+            }
+        }
+        return hasDiagonalLine;
+    }
+
+    public boolean isWin(CellContent playerSide) {
+        return hasHorizontalLine(playerSide) || hasVerticalLine(playerSide) || hasDiagonalLine(playerSide);
     }
 
     public boolean hasEmptyCell(){
