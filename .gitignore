@@ -4,7 +4,7 @@
 #My choise for ignore
 .idea/
 target/
-GoJavaOnline.iml
+tictack.iml
 _encodedMsg.txt
 
 
