@@ -15,8 +15,4 @@ public class TooFarFromRangeException extends Exception {
         return index;
     }
 
-    @Override
-    public String toString() {
-        return "Input value " + index + " is above of board range";
-    }
 }

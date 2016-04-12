@@ -17,7 +17,7 @@ public class HumanPlayer extends Player {
                 Scanner scanner = new Scanner(System.in);
                 return scanner.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("You have to print Integer " + input + "'s" + " value" );
+                System.out.println("You have to print Integer " + input + "'s value" );
             }
         }
     }
