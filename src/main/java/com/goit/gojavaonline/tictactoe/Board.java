@@ -8,26 +8,25 @@ import java.util.List;
  */
 
 public class Board {
-    public static final int ROWS = 3;
-    public static final int COLS = 3;
+    public static final int DIMENTION = 3;
 
 
 
     Cell[][] cells;
 
     public Board() {
-        cells = new Cell[ROWS][COLS];
+        cells = new Cell[DIMENTION][DIMENTION];
 
-        for (int row = 0; row < ROWS; row++) {
-            for (int col = 0; col < COLS; col++) {
+        for (int row = 0; row < DIMENTION; row++) {
+            for (int col = 0; col < DIMENTION; col++) {
                 cells[row][col] = new Cell(row, col);
             }
         }
     }
 
     public void clearBoard() {
-        for (int row = 0; row < ROWS; row++) {
-            for (int col = 0; col < COLS; col++) {
+        for (int row = 0; row < DIMENTION; row++) {
+            for (int col = 0; col < DIMENTION; col++) {
                 cells[row][col].setContent(CellContent.EMPTY);
             }
         }
@@ -36,8 +35,8 @@ public class Board {
     public List<Cell> getEmptyCells() {
         List<Cell> listEmptyCells = new ArrayList<>();
 
-        for (int row = 0; row < ROWS; ++row) {
-            for (int col = 0; col < COLS; ++col) {
+        for (int row = 0; row < DIMENTION; ++row) {
+            for (int col = 0; col < DIMENTION; ++col) {
                 if (cells[row][col].getContent() == CellContent.EMPTY) {
                     listEmptyCells.add(cells[row][col]);
                 }
@@ -46,30 +45,15 @@ public class Board {
         return listEmptyCells;
     }
 
-    private boolean hasHorizontalLine(CellContent cellContent){
-        boolean hasLine = true;
-        for(int row = 0; row < ROWS; row++){
-            hasLine = true;
-            for(int col = 0; col < COLS; col++){
-                //System.out.println("cells[ "+row +" ][ "+ col + " ] == " + cells[row][col].getContent());
-                if(cells[row][col].getContent() != cellContent){
-                    hasLine = false;
-                    break;
-                }
-            }
-            if(hasLine){
-                break;
-            }
+    private boolean hasLine(CellContent cellContent, LineDirection lineDirection){
+        if(lineDirection == LineDirection.DIAGONAL){
+            return hasDiagonalLine(cellContent);
         }
-        return hasLine;
-    }
-
-    private boolean hasVerticalLine(CellContent cellContent){
         boolean hasLine = true;
-        for(int col = 0; col < COLS; col++){
+        for(int i = 0; i < DIMENTION; i++){
             hasLine = true;
-            for(int row = 0; row < ROWS; row++){
-                if(cells[row][col].getContent() != cellContent){
+            for(int j = 0; j < DIMENTION; j++){
+                if(lineDirection == LineDirection.VERTICAL?cells[j][i].getContent() != cellContent:cells[i][j].getContent() != cellContent){
                     hasLine = false;
                     break;
                 }
@@ -83,7 +67,7 @@ public class Board {
 
     private boolean hasDiagonalLine(CellContent cellContent){
         boolean hasDiagonalLine = true;
-        for(int cellIndex = 0; cellIndex < Math.min(ROWS, COLS); cellIndex++){
+        for(int cellIndex = 0; cellIndex < DIMENTION; cellIndex++){
             hasDiagonalLine = cells[cellIndex][cellIndex].getContent() == cellContent;
             if (!hasDiagonalLine){
                 break;
@@ -93,7 +77,7 @@ public class Board {
             return true;
         }
         int rowIndex = 0;
-        for(int colIndex = Math.min(ROWS, COLS)-1; colIndex >= 0; colIndex--){
+        for(int colIndex = DIMENTION-1; colIndex >= 0; colIndex--){
             hasDiagonalLine = cells[rowIndex++][colIndex].getContent() == cellContent;
             if (!hasDiagonalLine){
                 break;
@@ -103,12 +87,12 @@ public class Board {
     }
 
     public boolean isWin(CellContent playerSide) {
-        return hasHorizontalLine(playerSide) || hasVerticalLine(playerSide) || hasDiagonalLine(playerSide);
+        return hasLine(playerSide, LineDirection.HORIZONTAL) || hasLine(playerSide, LineDirection.VERTICAL) || hasLine(playerSide, LineDirection.DIAGONAL);
     }
 
     public boolean hasEmptyCell(){
-        for (int row = 0; row < ROWS; ++row) {
-            for (int col = 0; col < COLS; ++col) {
+        for (int row = 0; row < DIMENTION; ++row) {
+            for (int col = 0; col < DIMENTION; ++col) {
                 if (cells[row][col].getContent() == CellContent.EMPTY) {
                     return true;
                 }
@@ -121,8 +105,8 @@ public class Board {
     protected Board clone()  {
         Board copyBoard = new Board();
 
-        for (int row = 0; row < ROWS; row++) {
-            for (int col = 0; col < COLS; col++) {
+        for (int row = 0; row < DIMENTION; row++) {
+            for (int col = 0; col < DIMENTION; col++) {
                 copyBoard.cells[row][col].setContent(this.cells[row][col].getContent());
             }
         }
@@ -130,8 +114,8 @@ public class Board {
     }
 
     public void print(){
-        for (int row = 0; row < ROWS; ++row) {
-            for (int col = 0; col < COLS; ++col) {
+        for (int row = 0; row < DIMENTION; ++row) {
+            for (int col = 0; col < DIMENTION; ++col) {
                 cells[row][col].paint();
             }
             System.out.println();
