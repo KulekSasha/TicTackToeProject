@@ -12,8 +12,9 @@ public class AAA {
 //        b.cells[2][2].setContent(com.goit.gojavaonline.tictactoe.CellContent.ZERO);
 
 
-        Game g = new Game(b);
+        Game game = new Game(b);
 
-        g.startGame();
+        game.startGame();
+        System.out.println(game.getGameResult());
     }
 }

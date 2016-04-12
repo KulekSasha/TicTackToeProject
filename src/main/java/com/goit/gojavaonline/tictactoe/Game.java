@@ -31,6 +31,9 @@ public class Game {
             if(board.isWin(CellContent.CROSS)){
                 gameState= GameState.CROSS_WIN;
                 break;
+            } else if(!board.hasEmptyCell()){
+                gameState = GameState.DRAW;
+                break;
             }
 
             int[] zeroNextMoves = playerZero.getNextMoves();
@@ -40,11 +43,24 @@ public class Game {
             if(board.isWin(CellContent.ZERO)){
                 gameState = GameState.ZERO_WIN;
                 break;
+            } else if(!board.hasEmptyCell()){
+                gameState = GameState.DRAW;
+                break;
             }
 
         } while (gameState == GameState.PLAYING);
-        System.out.println(gameState.toString() + " win buy");
 
+
+
+
+    }
+
+    public String getGameResult(){
+        if(gameState == GameState.DRAW){
+            return gameState.toString();
+        } else {
+            return gameState.toString() + " won!";
+        }
     }
 
 
