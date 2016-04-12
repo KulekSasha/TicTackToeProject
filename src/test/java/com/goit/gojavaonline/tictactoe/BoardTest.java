@@ -4,11 +4,13 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+
 /**
  * Created by tamila on 4/11/16.
  */
 public class BoardTest {
     private static Board board;
+
     @BeforeClass
     public static void setUpClass(){
         board = new Board();
