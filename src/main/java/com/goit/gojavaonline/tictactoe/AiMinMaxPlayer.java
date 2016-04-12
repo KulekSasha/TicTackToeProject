@@ -19,6 +19,7 @@ public class AiMinMaxPlayer extends Player {
     @Override
     public int[] getNextMoves() {
         int[] result = minimaxCross(1, this.playerSide);
+        System.out.println(result.toString());
         return new int[]{result[1], result[2]};
     }
 

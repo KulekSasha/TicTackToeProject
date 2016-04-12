@@ -8,25 +8,27 @@ import java.util.List;
  */
 
 public class Board {
-    public static final int DIMENTION = 3;
+    public static final int DIMENSION = 3;
 
-
-
-    Cell[][] cells;
+    private Cell[][] cells;
 
     public Board() {
-        cells = new Cell[DIMENTION][DIMENTION];
+        cells = new Cell[DIMENSION][DIMENSION];
 
-        for (int row = 0; row < DIMENTION; row++) {
-            for (int col = 0; col < DIMENTION; col++) {
+        for (int row = 0; row < DIMENSION; row++) {
+            for (int col = 0; col < DIMENSION; col++) {
                 cells[row][col] = new Cell(row, col);
             }
         }
     }
 
+    public Cell[][] getCells(){
+        return cells;
+    }
+
     public void clearBoard() {
-        for (int row = 0; row < DIMENTION; row++) {
-            for (int col = 0; col < DIMENTION; col++) {
+        for (int row = 0; row < DIMENSION; row++) {
+            for (int col = 0; col < DIMENSION; col++) {
                 cells[row][col].setContent(CellContent.EMPTY);
             }
         }
@@ -35,8 +37,8 @@ public class Board {
     public List<Cell> getEmptyCells() {
         List<Cell> listEmptyCells = new ArrayList<>();
 
-        for (int row = 0; row < DIMENTION; ++row) {
-            for (int col = 0; col < DIMENTION; ++col) {
+        for (int row = 0; row < DIMENSION; ++row) {
+            for (int col = 0; col < DIMENSION; ++col) {
                 if (cells[row][col].getContent() == CellContent.EMPTY) {
                     listEmptyCells.add(cells[row][col]);
                 }
@@ -50,9 +52,9 @@ public class Board {
             return hasDiagonalLine(cellContent);
         }
         boolean hasLine = true;
-        for(int i = 0; i < DIMENTION; i++){
+        for(int i = 0; i < DIMENSION; i++){
             hasLine = true;
-            for(int j = 0; j < DIMENTION; j++){
+            for(int j = 0; j < DIMENSION; j++){
                 if(lineDirection == LineDirection.VERTICAL?cells[j][i].getContent() != cellContent:cells[i][j].getContent() != cellContent){
                     hasLine = false;
                     break;
@@ -67,7 +69,7 @@ public class Board {
 
     private boolean hasDiagonalLine(CellContent cellContent){
         boolean hasDiagonalLine = true;
-        for(int cellIndex = 0; cellIndex < DIMENTION; cellIndex++){
+        for(int cellIndex = 0; cellIndex < DIMENSION; cellIndex++){
             hasDiagonalLine = cells[cellIndex][cellIndex].getContent() == cellContent;
             if (!hasDiagonalLine){
                 break;
@@ -77,7 +79,7 @@ public class Board {
             return true;
         }
         int rowIndex = 0;
-        for(int colIndex = DIMENTION-1; colIndex >= 0; colIndex--){
+        for(int colIndex = DIMENSION-1; colIndex >= 0; colIndex--){
             hasDiagonalLine = cells[rowIndex++][colIndex].getContent() == cellContent;
             if (!hasDiagonalLine){
                 break;
@@ -91,8 +93,8 @@ public class Board {
     }
 
     public boolean hasEmptyCell(){
-        for (int row = 0; row < DIMENTION; ++row) {
-            for (int col = 0; col < DIMENTION; ++col) {
+        for (int row = 0; row < DIMENSION; ++row) {
+            for (int col = 0; col < DIMENSION; ++col) {
                 if (cells[row][col].getContent() == CellContent.EMPTY) {
                     return true;
                 }
@@ -105,8 +107,8 @@ public class Board {
     protected Board clone()  {
         Board copyBoard = new Board();
 
-        for (int row = 0; row < DIMENTION; row++) {
-            for (int col = 0; col < DIMENTION; col++) {
+        for (int row = 0; row < DIMENSION; row++) {
+            for (int col = 0; col < DIMENSION; col++) {
                 copyBoard.cells[row][col].setContent(this.cells[row][col].getContent());
             }
         }
@@ -114,8 +116,8 @@ public class Board {
     }
 
     public void print(){
-        for (int row = 0; row < DIMENTION; ++row) {
-            for (int col = 0; col < DIMENTION; ++col) {
+        for (int row = 0; row < DIMENSION; ++row) {
+            for (int col = 0; col < DIMENSION; ++col) {
                 cells[row][col].paint();
             }
             System.out.println();

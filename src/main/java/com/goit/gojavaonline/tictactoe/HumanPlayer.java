@@ -28,6 +28,6 @@ public class HumanPlayer extends Player {
     }
 
     private boolean isEmptyCell(int row, int col) {
-        return board.cells[row][col].getContent() == CellContent.EMPTY ? true : false;
+        return board.getCells()[row][col].getContent() == CellContent.EMPTY ? true : false;
     }
 }
