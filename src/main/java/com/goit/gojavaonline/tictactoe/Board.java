@@ -22,7 +22,7 @@ public class Board {
         }
     }
 
-    public Cell[][] getCells(){
+    public Cell[][] getCells() {
         return cells;
     }
 
@@ -47,41 +47,42 @@ public class Board {
         return listEmptyCells;
     }
 
-    private boolean hasLine(CellContent cellContent, LineDirection lineDirection){
-        if(lineDirection == LineDirection.DIAGONAL){
+    private boolean hasLine(CellContent cellContent, LineDirection lineDirection) {
+        if (lineDirection == LineDirection.DIAGONAL) {
             return hasDiagonalLine(cellContent);
         }
         boolean hasLine = true;
-        for(int i = 0; i < DIMENSION; i++){
+        for (int i = 0; i < DIMENSION; i++) {
             hasLine = true;
-            for(int j = 0; j < DIMENSION; j++){
-                if(lineDirection == LineDirection.VERTICAL?cells[j][i].getContent() != cellContent:cells[i][j].getContent() != cellContent){
+            for (int j = 0; j < DIMENSION; j++) {
+                if (lineDirection == LineDirection.VERTICAL ?
+                        cells[j][i].getContent() != cellContent : cells[i][j].getContent() != cellContent) {
                     hasLine = false;
                     break;
                 }
             }
-            if(hasLine){
+            if (hasLine) {
                 break;
             }
         }
         return hasLine;
     }
 
-    private boolean hasDiagonalLine(CellContent cellContent){
+    private boolean hasDiagonalLine(CellContent cellContent) {
         boolean hasDiagonalLine = true;
-        for(int cellIndex = 0; cellIndex < DIMENSION; cellIndex++){
+        for (int cellIndex = 0; cellIndex < DIMENSION; cellIndex++) {
             hasDiagonalLine = cells[cellIndex][cellIndex].getContent() == cellContent;
-            if (!hasDiagonalLine){
+            if (!hasDiagonalLine) {
                 break;
             }
         }
-        if(hasDiagonalLine){
+        if (hasDiagonalLine) {
             return true;
         }
         int rowIndex = 0;
-        for(int colIndex = DIMENSION-1; colIndex >= 0; colIndex--){
+        for (int colIndex = DIMENSION - 1; colIndex >= 0; colIndex--) {
             hasDiagonalLine = cells[rowIndex++][colIndex].getContent() == cellContent;
-            if (!hasDiagonalLine){
+            if (!hasDiagonalLine) {
                 break;
             }
         }
@@ -92,7 +93,7 @@ public class Board {
         return hasLine(playerSide, LineDirection.HORIZONTAL) || hasLine(playerSide, LineDirection.VERTICAL) || hasLine(playerSide, LineDirection.DIAGONAL);
     }
 
-    public boolean hasEmptyCell(){
+    public boolean hasEmptyCell() {
         for (int row = 0; row < DIMENSION; ++row) {
             for (int col = 0; col < DIMENSION; ++col) {
                 if (cells[row][col].getContent() == CellContent.EMPTY) {
@@ -104,7 +105,7 @@ public class Board {
     }
 
     @Override
-    protected Board clone()  {
+    protected Board clone() {
         Board copyBoard = new Board();
 
         for (int row = 0; row < DIMENSION; row++) {
@@ -115,7 +116,7 @@ public class Board {
         return copyBoard;
     }
 
-    public void print(){
+    public void print() {
         for (int row = 0; row < DIMENSION; ++row) {
             for (int col = 0; col < DIMENSION; ++col) {
                 cells[row][col].paint();
