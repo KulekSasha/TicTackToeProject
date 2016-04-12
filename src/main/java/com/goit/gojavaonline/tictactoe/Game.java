@@ -27,20 +27,26 @@ public class Game {
 
         do {
             int[] crossNextMoves = playerCross.getNextMoves();
-            board.cells[crossNextMoves[0]][crossNextMoves[1]].setContent(playerCross.getPlayerSide());
+            board.getCells()[crossNextMoves[0]][crossNextMoves[1]].setContent(playerCross.getPlayerSide());
             board.print();
 
             if(board.isWin(CellContent.CROSS)){
                 gameState= GameState.CROSS_WIN;
                 break;
+            } else if(!board.hasEmptyCell()){
+                gameState = GameState.DRAW;
+                break;
             }
 
             int[] zeroNextMoves = playerZero.getNextMoves();
-            board.cells[zeroNextMoves[0]][zeroNextMoves[1]].setContent(playerZero.getPlayerSide());
+            board.getCells()[zeroNextMoves[0]][zeroNextMoves[1]].setContent(playerZero.getPlayerSide());
             board.print();
 
             if(board.isWin(CellContent.ZERO)){
                 gameState = GameState.ZERO_WIN;
+                break;
+            } else if(!board.hasEmptyCell()){
+                gameState = GameState.DRAW;
                 break;
             }
 
@@ -48,6 +54,17 @@ public class Game {
 
         System.out.println(gameState.toString() + " win buy");
 
+
+
+
+    }
+
+    public String getGameResult(){
+        if(gameState == GameState.DRAW){
+            return gameState.toString();
+        } else {
+            return gameState.toString() + " won!";
+        }
     }
 
 
