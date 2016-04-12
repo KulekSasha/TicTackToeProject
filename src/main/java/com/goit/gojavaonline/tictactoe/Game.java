@@ -52,12 +52,7 @@ public class Game {
 
         } while (gameState == GameState.PLAYING);
 
-        System.out.println(gameState.toString() + " win buy");
-
-
-
-
-    }
+        }
 
     public String getGameResult(){
         if(gameState == GameState.DRAW){
