@@ -14,7 +14,7 @@ public class HumanPlayer extends Player {
     }
 
     @Override
-    public int[] getNextMoves() {
+    public int[] getNextMoves() { // TODO: 13/04/2016 rewrite this method - should be more stable for wrong input and more clear UI
         Scanner scanner = new Scanner(System.in);
 
         int row = 0;

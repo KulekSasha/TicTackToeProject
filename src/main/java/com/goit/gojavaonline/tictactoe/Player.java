@@ -20,8 +20,3 @@ public abstract class Player {
         return playerSide;
     }
 }
-
-
-enum PlayerType {
-    AI, HUMAN
-}

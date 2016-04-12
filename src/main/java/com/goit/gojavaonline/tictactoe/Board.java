@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 public class Board {
-    public static final int DIMENSION = 3;
+    public static final int DIMENSION = 3; //TODO if dimension > 3 program calculates next step very long time
 
     private Cell[][] cells;
 

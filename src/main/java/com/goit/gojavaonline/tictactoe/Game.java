@@ -17,13 +17,18 @@ public class Game {
 
 
     public void startGame() {
-        setUpPleers(); //now cross player = AI
+        setUpPleers();
         gameState = GameState.PLAYING;
 
         int[] tmp = new int[2];
         int[] tmp2 = new int[2];
 
         do {
+
+            // TODO: N3 12/04/2016 add variable "turn", rewrite like if(turn % 2 > 0 : CROSS ? ZERO)
+            // TODO: N4 12/04/2016 use getStatus method here
+            // TODO: N5 12/04/2016 at the end ask user is he want to play again?
+
             int[] crossNextMoves = playerCross.getNextMoves();
             board.getCells()[crossNextMoves[0]][crossNextMoves[1]].setContent(playerCross.getPlayerSide());
             board.print();
@@ -65,8 +70,9 @@ public class Game {
 
 
     private void setUpPleers() {
-        //ask user about side
-        CellContent answer = CellContent.ZERO;
+
+        // TODO: N1 12/04/2016 write method which asks user to select CROSS or ZERO
+        CellContent answer = CellContent.ZERO; // TODO: N2 13/04/2016 remove this stub line after task N1 completion
         //--------------
 
         if (answer == CellContent.CROSS) {
