@@ -104,18 +104,6 @@ public class Board {
         return false;
     }
 
-    @Override
-    protected Board clone() {
-        Board copyBoard = new Board();
-
-        for (int row = 0; row < DIMENSION; row++) {
-            for (int col = 0; col < DIMENSION; col++) {
-                copyBoard.cells[row][col].setContent(this.cells[row][col].getContent());
-            }
-        }
-        return copyBoard;
-    }
-
     public void print() {
         for (int row = 0; row < DIMENSION; ++row) {
             for (int col = 0; col < DIMENSION; ++col) {
