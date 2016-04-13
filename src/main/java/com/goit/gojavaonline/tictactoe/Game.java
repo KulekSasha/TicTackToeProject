@@ -11,7 +11,7 @@ public class Game {
     private Player playerCross;
     private Player playerZero;
     private GameState gameState;
-
+    private Scanner scanner = new Scanner(System.in);
 
     public Game(Board board) {
         this.board = board;
@@ -25,25 +25,19 @@ public class Game {
         setUpPlayers();
 
         do {
-
-            // TODO: N3 12/04/2016 add variable "turn", rewrite like if(turn % 2 > 0 : CROSS ? ZERO)
-            // TODO: N4 12/04/2016 use getStatus method here
-            // TODO: N5 12/04/2016 at the end ask user is he want to play again?
-            //// TODO: 13/04/2016 if user first print empty board
-
             if (turn % 2 == 1) {
                 nextMove = playerCross.getNextMoves();
-                board.setUpCellContent(nextMove[0], nextMove[2], playerCross.getPlayerSide());
+                board.setUpCellContent(nextMove[0], nextMove[1], playerCross.getPlayerSide());
             } else {
-                int[] zeroNextMoves = playerZero.getNextMoves();
-                board.getCells()[zeroNextMoves[0]][zeroNextMoves[1]].setContent(playerZero.getPlayerSide());
+                nextMove = playerZero.getNextMoves();
+                board.setUpCellContent(nextMove[0], nextMove[1], playerZero.getPlayerSide());
             }
-
             board.print();
-            checkGameStatus();
             turn++;
+            gameState = updateGameStatus();
         } while (gameState == GameState.PLAYING);
-
+        System.out.println(getGameResult());
+        playAgain();
     }
 
     public String getGameResult() {
@@ -54,7 +48,6 @@ public class Game {
         }
     }
 
-
     private void setUpPlayers() {
         CellContent answer = null;
         boolean iterator = true;
@@ -63,21 +56,15 @@ public class Game {
                 "What do you prefer to play with: crosses or zeroes (type CROSS or ZERO, QUIT for quit)\n");
 
         while (iterator) {
-
-            Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine().toUpperCase();
-
             if ("CROSS".equals(input)) {
                 answer = CellContent.CROSS;
                 break;
-
             } else if ("ZERO".equals(input)) {
                 answer = CellContent.ZERO;
                 break;
-
             } else if ("QUIT".equals(input)) {
                 System.exit(0);
-
             } else {
                 System.out.println("Please, make your choice");
             }
@@ -86,24 +73,32 @@ public class Game {
         if (answer == CellContent.CROSS) {
             playerCross = new HumanPlayer(board, CellContent.CROSS);
             playerZero = new AiMinMaxPlayer(board, CellContent.ZERO);
+            board.print();
         } else if (answer == CellContent.ZERO) {
             playerCross = new AiMinMaxPlayer(board, CellContent.CROSS);
             playerZero = new HumanPlayer(board, CellContent.ZERO);
         }
     }
 
-    private void checkGameStatus() {
+    private GameState updateGameStatus() {
         if (board.isWin(CellContent.CROSS)) {
-            gameState = GameState.CROSS_WIN;
+            return GameState.CROSS_WIN;
         } else if (board.isWin(CellContent.ZERO)) {
-            gameState = GameState.ZERO_WIN;
+            return GameState.ZERO_WIN;
         } else if (board.getEmptyCells().size() == 0) {
-            gameState = GameState.DRAW;
+            return GameState.DRAW;
         } else {
-            gameState = GameState.PLAYING;
+            return GameState.PLAYING;
         }
     }
 
+    private void playAgain() {
+        System.out.println("Dp you want to play once more?\n'Y' - yes\n'any key' - no");
+        if (scanner.hasNext("y") || scanner.hasNext("Y")) {
+            board.clearBoard();
+            startGame();
+        }
+    }
 }
 
 enum GameState {
