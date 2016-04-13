@@ -80,7 +80,7 @@ public class Game {
         while (iterator) {
 
             Scanner scanner = new Scanner(System.in);
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().toUpperCase();
 
             if ("CROSS".equals(input)) {
                 answer = CellContent.CROSS;
