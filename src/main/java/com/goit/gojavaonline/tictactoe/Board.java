@@ -113,4 +113,13 @@ public class Board {
         }
         System.out.println("--------------------");
     }
+
+    public boolean setUpCellContent(int row, int col, CellContent content){
+        if (cells[row][col].getContent() != CellContent.EMPTY){
+            return false;
+        }else {
+            cells[row][col].setContent(content);
+            return true;
+        }
+    }
 }
