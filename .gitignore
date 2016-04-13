@@ -4,7 +4,7 @@
 #My choise for ignore
 .idea/
 target/
-tictack.iml
+*.iml
 tictacproject.iml
 _encodedMsg.txt
 
