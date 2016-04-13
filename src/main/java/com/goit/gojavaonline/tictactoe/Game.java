@@ -19,9 +19,10 @@ public class Game {
 
 
     public void startGame() {
-        setUpPlayers();
         int turn = 1;
         gameState = GameState.PLAYING;
+        int[] nextMove;// = null;
+        setUpPlayers();
 
         do {
 
@@ -31,15 +32,14 @@ public class Game {
             //// TODO: 13/04/2016 if user first print empty board
 
             if (turn % 2 == 1) {
-                int[] crossNextMoves = playerCross.getNextMoves();
-                board.getCells()[crossNextMoves[0]][crossNextMoves[1]].setContent(playerCross.getPlayerSide());
-                board.print();
+                nextMove = playerCross.getNextMoves();
+                board.setUpCellContent(nextMove[0], nextMove[2], playerCross.getPlayerSide());
             } else {
                 int[] zeroNextMoves = playerZero.getNextMoves();
                 board.getCells()[zeroNextMoves[0]][zeroNextMoves[1]].setContent(playerZero.getPlayerSide());
-                board.print();
             }
 
+            board.print();
             checkGameStatus();
             turn++;
         } while (gameState == GameState.PLAYING);
