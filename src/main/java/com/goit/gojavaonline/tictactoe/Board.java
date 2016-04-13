@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 public class Board {
-    private static final int DIMENSION = 3;
+    public static final int DIMENSION = 3;
 
     private Cell[][] cells;
 
