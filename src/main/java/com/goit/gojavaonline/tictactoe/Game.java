@@ -31,8 +31,8 @@ public class Game {
             // TODO: N4 12/04/2016 use getStatus method here
             // TODO: N5 12/04/2016 at the end ask user is he want to play again?
 
-            int[] crossNextMoves = playerCross.getNextMoves();
-            board.getCells()[crossNextMoves[0]][crossNextMoves[1]].setContent(playerCross.getPlayerSide());
+            PlayerMove crossNextMoves = playerCross.getNextMoves();
+            board.getCells()[crossNextMoves.getRow()][crossNextMoves.getColumn()].setContent(playerCross.getPlayerSide());
             board.print();
 
             if(board.isWin(CellContent.CROSS)){
@@ -43,8 +43,8 @@ public class Game {
                 break;
             }
 
-            int[] zeroNextMoves = playerZero.getNextMoves();
-            board.getCells()[zeroNextMoves[0]][zeroNextMoves[1]].setContent(playerZero.getPlayerSide());
+            PlayerMove zeroNextMoves = playerZero.getNextMoves();
+            board.getCells()[zeroNextMoves.getRow()][zeroNextMoves.getColumn()].setContent(playerZero.getPlayerSide());
             board.print();
 
             if(board.isWin(CellContent.ZERO)){
@@ -57,7 +57,7 @@ public class Game {
 
         } while (gameState == GameState.PLAYING);
 
-        }
+    }
 
     public String getGameResult(){
         if(gameState == GameState.DRAW){
@@ -69,8 +69,6 @@ public class Game {
 
 
     private void setUpPlayers() {
-
-        //ask user about side
         CellContent answer = null;
         boolean iterator = true;
 

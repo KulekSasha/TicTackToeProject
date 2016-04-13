@@ -8,9 +8,6 @@ import java.util.Scanner;
  */
 
 public class HumanPlayer extends Player {
-
-    private static final int DIMENSION = 3;
-
     private static int readInt(String input){
         while(true) {
             try {
@@ -28,7 +25,7 @@ public class HumanPlayer extends Player {
     }
 
     @Override
-    public int[] getNextMoves() {
+    public PlayerMove getNextMoves() {
 
         int row;
         int column;
@@ -42,22 +39,22 @@ public class HumanPlayer extends Player {
             column = getMovingIndex("column");
 
         } while (!isEmptyCell(row, column));
-        return new int[]{row, column};
+        return new PlayerMove(0, row, column);
     }
 
     private int getMovingIndex(String argument) {
 
         int index = catchNegativeInput(argument);
 
-        if (index >= DIMENSION) {
+        if (index >= Board.DIMENSION) {
 
-            while (index >= DIMENSION) {
+            while (index >= Board.DIMENSION) {
                 try {
                     throw new TooFarFromRangeException(index);
 
                 } catch (TooFarFromRangeException e) {
 
-                    System.out.print("Your " + argument + "\'s value should be less then " + DIMENSION + "\n" + argument + ": ");
+                    System.out.print("Your " + argument + "\'s value should be less then " + Board.DIMENSION + "\n" + argument + ": ");
                     index = catchNegativeInput(argument);
                 }
             }
@@ -86,6 +83,6 @@ public class HumanPlayer extends Player {
     }
 
     private boolean isEmptyCell(int row, int col) {
-        return board.getCells()[row][col].getContent() == CellContent.EMPTY ? true : false;
+        return board.getCells()[row][col].getContent() == CellContent.EMPTY;
     }
 }

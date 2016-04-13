@@ -14,7 +14,7 @@ public abstract class Player {
         this.playerSide = playerSide;
     }
 
-    public abstract int[] getNextMoves();
+    public abstract PlayerMove getNextMoves();
 
     public CellContent getPlayerSide() {
         return playerSide;

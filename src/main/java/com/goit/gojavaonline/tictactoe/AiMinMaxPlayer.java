@@ -14,51 +14,46 @@ public class AiMinMaxPlayer extends Player {
     }
 
     @Override
-    public int[] getNextMoves() {
-        int[] result = minimax(1, this.playerSide); // TODO: 13/04/2016 why first argument "1", move to minimax method
-        return new int[]{result[1], result[2]};
+    public PlayerMove getNextMoves() {
+        return minimax(1, this.playerSide); // TODO: 13/04/2016 why first argument "1", move to minimax method
     }
 
 
-    private int[] minimax(int depth, CellContent player) {
+    private PlayerMove minimax(int depth, CellContent player) {
         List<Cell> emptyCells = this.board.getEmptyCells();
 
 
-        int[] tmp = new int[3];
-        int[] result = new int[3];
-        result[0] = (this.playerSide == player) ? Integer.MIN_VALUE : Integer.MAX_VALUE; //best score
+        PlayerMove tmpMove = new PlayerMove();
+        PlayerMove resultMove = new PlayerMove();
+        resultMove.setDepth(this.playerSide == player? Integer.MIN_VALUE : Integer.MAX_VALUE); //best score
 
         if (board.isWin(player)) {
             if (playerSide == player) {
-                return new int[]{depth + 10};
+                return new PlayerMove(depth + 10, 0, 0);
             } else {
-                return new int[]{depth - 10};
+                return new PlayerMove(depth - 10, 0, 0);
             }
         } else if (!board.hasEmptyCell()) {
-            return new int[]{0};
+            return new PlayerMove(0, 0, 0);
         }
 
         for (Cell cell : emptyCells) {
             cell.setContent(player);
 
             if (playerSide == player) {
-                tmp[0] = minimax(depth + 1, oppositePlayer)[0];
-                if (tmp[0] > result[0]) {
-                    result[0] = tmp[0];
-                    result[1] = cell.getRow();
-                    result[2] = cell.getCol();
+                tmpMove.setDepth(minimax(depth + 1, oppositePlayer).getDepth());
+                if (tmpMove.getDepth() > resultMove.getDepth()) {
+                    resultMove.setMove(tmpMove.getDepth(), cell.getRow(), cell.getCol());
                 }
-            } else if (playerSide != player) {
-                tmp[0] = minimax(depth + 1, playerSide)[0];
-                if (tmp[0] < result[0]) {
-                    result[0] = tmp[0];
-                    result[1] = tmp[1];
-                    result[2] = tmp[2];
+            } else {
+                tmpMove.setDepth( minimax(depth + 1, playerSide).getDepth());
+                if (tmpMove.getDepth() < resultMove.getDepth()) {
+                    resultMove.setMove(tmpMove.getDepth(), tmpMove.getRow(), tmpMove.getColumn());
                 }
             }
             cell.setContent(CellContent.EMPTY);
         }
-        return result;
+        return resultMove;
     }
 
     private CellContent getOppositePlayer(CellContent player) {
