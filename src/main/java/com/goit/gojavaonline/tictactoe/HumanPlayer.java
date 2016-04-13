@@ -16,6 +16,7 @@ public class HumanPlayer extends Player {
             try {
                 Scanner scanner = new Scanner(System.in);
                 return scanner.nextInt();
+
             } catch (InputMismatchException e) {
                 System.out.print("You have to print Integer " + input + "'s value\n" + input + ": " );
             }
@@ -46,24 +47,42 @@ public class HumanPlayer extends Player {
 
     private int getMovingIndex(String argument) {
 
-        int index = readInt(argument) - 1;
+        int index = catchNegativeInput(argument);
 
         if (index >= DIMENSION) {
 
             while (index >= DIMENSION) {
-
                 try {
-
                     throw new TooFarFromRangeException(index);
 
                 } catch (TooFarFromRangeException e) {
 
                     System.out.print("Your " + argument + "\'s value should be less then " + DIMENSION + "\n" + argument + ": ");
-                    index = readInt(argument) - 1;
+                    index = catchNegativeInput(argument);
                 }
             }
         }
         return index;
+    }
+
+    private int catchNegativeInput(String argument) {
+
+        int input = readInt(argument) - 1;
+
+        if (input < 0) {
+
+            while (input < 0) {
+                try {
+                    throw new NegativeIntegerInputException("To good to be true");
+
+                } catch (NegativeIntegerInputException e) {
+
+                    System.out.print("You should enter an Integer value which is above zero\n" + argument + ": ");
+                    input = readInt(argument) - 1;
+                }
+            }
+        }
+        return input;
     }
 
     private boolean isEmptyCell(int row, int col) {
