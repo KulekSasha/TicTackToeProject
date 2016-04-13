@@ -35,23 +35,25 @@ public class HumanPlayer extends Player {
             System.out.println("Please, make your move:");
 
             System.out.print("row: ");
-            row = readInt("row") - 1;
-
-            row = getMovingIndex(row, "row");
+            row = getMovingIndex("row");
 
             System.out.print("column: ");
-            column = readInt("column") - 1;
-
-            column = getMovingIndex(column, "column");
+            column = getMovingIndex("column");
 
         } while (!isEmptyCell(row, column));
         return new int[]{row, column};
     }
 
-    private int getMovingIndex(int index, String argument) {
+    private int getMovingIndex(String argument) {
+
+        int index = readInt(argument) - 1;
+
         if (index >= DIMENSION) {
+
             while (index >= DIMENSION) {
+
                 try {
+
                     throw new TooFarFromRangeException(index);
 
                 } catch (TooFarFromRangeException e) {
