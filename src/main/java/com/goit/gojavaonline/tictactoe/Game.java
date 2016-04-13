@@ -21,7 +21,7 @@ public class Game {
     public void startGame() {
         int turn = 1;
         gameState = GameState.PLAYING;
-        int[] nextMove;// = null;
+        int[] nextMove;
         setUpPlayers();
 
         do {
