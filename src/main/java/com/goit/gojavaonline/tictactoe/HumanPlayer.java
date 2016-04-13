@@ -17,7 +17,7 @@ public class HumanPlayer extends Player {
                 Scanner scanner = new Scanner(System.in);
                 return scanner.nextInt();
             } catch (InputMismatchException e) {
-                System.out.println("You have to print Integer " + input + "'s value" );
+                System.out.print("You have to print Integer " + input + "'s value\n" + input + ": " );
             }
         }
     }
@@ -36,19 +36,29 @@ public class HumanPlayer extends Player {
 
             System.out.print("row: ");
             row = readInt("row") - 1;
+
             System.out.print("column: ");
             column = readInt("column") - 1;
 
-
-            if (row >= DIMENSION || column >= DIMENSION) {
+            if (row >= DIMENSION) {
                 try {
                     throw new TooFarFromRangeException(row);
 
                 } catch (TooFarFromRangeException e) {
 
-                    System.out.println("Your row's or column's value should be less then " + DIMENSION);
-                    row = 0;
-                    column = 0;
+                    System.out.print("Your row's value should be less then " + DIMENSION + "\nrow: ");
+                    row = readInt("row") - 1;
+                }
+            }
+
+            if (column >= DIMENSION) {
+                try {
+                    throw new TooFarFromRangeException(column);
+
+                } catch (TooFarFromRangeException e) {
+
+                    System.out.print("Your column's value should be less then " + DIMENSION + "\ncolumn: ");
+                    column = readInt("column") - 1;
                 }
             }
 
