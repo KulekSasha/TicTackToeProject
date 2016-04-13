@@ -35,10 +35,10 @@ public class Game {
             board.getCells()[crossNextMoves[0]][crossNextMoves[1]].setContent(playerCross.getPlayerSide());
             board.print();
 
-            if(board.isWin(CellContent.CROSS)){
-                gameState= GameState.CROSS_WIN;
+            if (board.isWin(CellContent.CROSS)) {
+                gameState = GameState.CROSS_WIN;
                 break;
-            } else if(!board.hasEmptyCell()){
+            } else if (!board.hasEmptyCell()) {
                 gameState = GameState.DRAW;
                 break;
             }
@@ -47,20 +47,20 @@ public class Game {
             board.getCells()[zeroNextMoves[0]][zeroNextMoves[1]].setContent(playerZero.getPlayerSide());
             board.print();
 
-            if(board.isWin(CellContent.ZERO)){
+            if (board.isWin(CellContent.ZERO)) {
                 gameState = GameState.ZERO_WIN;
                 break;
-            } else if(!board.hasEmptyCell()){
+            } else if (!board.hasEmptyCell()) {
                 gameState = GameState.DRAW;
                 break;
             }
 
         } while (gameState == GameState.PLAYING);
 
-        }
+    }
 
-    public String getGameResult(){
-        if(gameState == GameState.DRAW){
+    public String getGameResult() {
+        if (gameState == GameState.DRAW) {
             return gameState.toString();
         } else {
             return gameState.toString() + " won!";
@@ -69,8 +69,6 @@ public class Game {
 
 
     private void setUpPlayers() {
-
-        //ask user about side
         CellContent answer = null;
         boolean iterator = true;
 
@@ -90,7 +88,7 @@ public class Game {
                 answer = CellContent.ZERO;
                 break;
 
-            } else if ("QUIT".equals(input)){
+            } else if ("QUIT".equals(input)) {
                 System.exit(0);
 
             } else {

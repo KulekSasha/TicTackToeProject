@@ -11,14 +11,14 @@ public class HumanPlayer extends Player {
 
     private static final int DIMENSION = 3;
 
-    private static int readInt(String input){
-        while(true) {
+    private static int readInt(String input) {
+        while (true) {
             try {
                 Scanner scanner = new Scanner(System.in);
                 return scanner.nextInt();
 
             } catch (InputMismatchException e) {
-                System.out.print("You have to print Integer " + input + "'s value\n" + input + ": " );
+                System.out.print("You have to print Integer " + input + "'s value\n" + input + ": ");
             }
         }
     }
@@ -29,9 +29,9 @@ public class HumanPlayer extends Player {
 
     @Override
     public int[] getNextMoves() {
-
         int row;
         int column;
+
         do {
             System.out.println("Please, make your move:");
 
