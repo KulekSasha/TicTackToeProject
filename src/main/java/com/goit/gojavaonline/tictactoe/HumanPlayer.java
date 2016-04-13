@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class HumanPlayer extends Player {
 
-    private static final int BOARD_SIZE = 3;
+    private static final int DIMENSION = 3;
 
     private static int readInt(String input){
         while(true) {
@@ -40,13 +40,13 @@ public class HumanPlayer extends Player {
             column = readInt("column") - 1;
 
 
-            if (row >= BOARD_SIZE || column >= BOARD_SIZE) {
+            if (row >= DIMENSION || column >= DIMENSION) {
                 try {
                     throw new TooFarFromRangeException(row);
 
                 } catch (TooFarFromRangeException e) {
 
-                    System.out.println("Your row's or column's value should be less then " + BOARD_SIZE);
+                    System.out.println("Your row's or column's value should be less then " + DIMENSION);
                     row = 0;
                     column = 0;
                 }
