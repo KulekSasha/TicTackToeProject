@@ -20,41 +20,28 @@ public class Game {
 
     public void startGame() {
         setUpPlayers();
+        int turn = 1;
         gameState = GameState.PLAYING;
-
-        int[] tmp = new int[2];
-        int[] tmp2 = new int[2];
 
         do {
 
             // TODO: N3 12/04/2016 add variable "turn", rewrite like if(turn % 2 > 0 : CROSS ? ZERO)
             // TODO: N4 12/04/2016 use getStatus method here
             // TODO: N5 12/04/2016 at the end ask user is he want to play again?
+            //// TODO: 13/04/2016 if user first print empty board
 
-            int[] crossNextMoves = playerCross.getNextMoves();
-            board.getCells()[crossNextMoves[0]][crossNextMoves[1]].setContent(playerCross.getPlayerSide());
-            board.print();
-
-            if (board.isWin(CellContent.CROSS)) {
-                gameState = GameState.CROSS_WIN;
-                break;
-            } else if (!board.hasEmptyCell()) {
-                gameState = GameState.DRAW;
-                break;
+            if (turn % 2 == 1) {
+                int[] crossNextMoves = playerCross.getNextMoves();
+                board.getCells()[crossNextMoves[0]][crossNextMoves[1]].setContent(playerCross.getPlayerSide());
+                board.print();
+            } else {
+                int[] zeroNextMoves = playerZero.getNextMoves();
+                board.getCells()[zeroNextMoves[0]][zeroNextMoves[1]].setContent(playerZero.getPlayerSide());
+                board.print();
             }
 
-            int[] zeroNextMoves = playerZero.getNextMoves();
-            board.getCells()[zeroNextMoves[0]][zeroNextMoves[1]].setContent(playerZero.getPlayerSide());
-            board.print();
-
-            if (board.isWin(CellContent.ZERO)) {
-                gameState = GameState.ZERO_WIN;
-                break;
-            } else if (!board.hasEmptyCell()) {
-                gameState = GameState.DRAW;
-                break;
-            }
-
+            checkGameStatus();
+            turn++;
         } while (gameState == GameState.PLAYING);
 
     }
@@ -105,7 +92,7 @@ public class Game {
         }
     }
 
-    private void gameStatus() {
+    private void checkGameStatus() {
         if (board.isWin(CellContent.CROSS)) {
             gameState = GameState.CROSS_WIN;
         } else if (board.isWin(CellContent.ZERO)) {
