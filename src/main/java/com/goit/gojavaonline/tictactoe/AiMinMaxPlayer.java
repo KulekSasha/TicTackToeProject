@@ -8,6 +8,7 @@ import java.util.List;
 
 public class AiMinMaxPlayer extends Player {
     private CellContent oppositePlayer = getOppositePlayer(playerSide);
+    private final int initialDepth = 1;
 
     public AiMinMaxPlayer(Board board, CellContent playerSide) {
         super(board, playerSide);
@@ -15,14 +16,13 @@ public class AiMinMaxPlayer extends Player {
 
     @Override
     public int[] getNextMoves() {
-        int[] result = minimax(1, this.playerSide); // TODO: 13/04/2016 why first argument "1", move to minimax method
+        int[] result = minimax(initialDepth, this.playerSide);
         return new int[]{result[1], result[2]};
     }
 
 
     private int[] minimax(int depth, CellContent player) {
         List<Cell> emptyCells = this.board.getEmptyCells();
-
 
         int[] tmp = new int[3];
         int[] result = new int[3];
