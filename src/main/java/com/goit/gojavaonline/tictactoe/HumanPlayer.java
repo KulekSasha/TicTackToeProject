@@ -37,33 +37,31 @@ public class HumanPlayer extends Player {
             System.out.print("row: ");
             row = readInt("row") - 1;
 
+            row = getMovingIndex(row, "row");
+
             System.out.print("column: ");
             column = readInt("column") - 1;
 
-            if (row >= DIMENSION) {
-                try {
-                    throw new TooFarFromRangeException(row);
-
-                } catch (TooFarFromRangeException e) {
-
-                    System.out.print("Your row's value should be less then " + DIMENSION + "\nrow: ");
-                    row = readInt("row") - 1;
-                }
-            }
-
-            if (column >= DIMENSION) {
-                try {
-                    throw new TooFarFromRangeException(column);
-
-                } catch (TooFarFromRangeException e) {
-
-                    System.out.print("Your column's value should be less then " + DIMENSION + "\ncolumn: ");
-                    column = readInt("column") - 1;
-                }
-            }
+            column = getMovingIndex(column, "column");
 
         } while (!isEmptyCell(row, column));
         return new int[]{row, column};
+    }
+
+    private int getMovingIndex(int index, String argument) {
+        if (index >= DIMENSION) {
+            while (index >= DIMENSION) {
+                try {
+                    throw new TooFarFromRangeException(index);
+
+                } catch (TooFarFromRangeException e) {
+
+                    System.out.print("Your " + argument + "\'s value should be less then " + DIMENSION + "\n" + argument + ": ");
+                    index = readInt(argument) - 1;
+                }
+            }
+        }
+        return index;
     }
 
     private boolean isEmptyCell(int row, int col) {
