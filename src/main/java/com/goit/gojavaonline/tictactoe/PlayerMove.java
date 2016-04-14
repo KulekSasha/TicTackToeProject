@@ -48,4 +48,8 @@ public class PlayerMove {
         this.row = row;
         this.column = column;
     }
+
+    public boolean equalsMoveCell(PlayerMove playerMove) {
+        return (this.row == playerMove.getRow() && this.column == playerMove.getColumn());
+    }
 }

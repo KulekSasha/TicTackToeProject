@@ -50,8 +50,6 @@ public class Game {
 
 
     private void setUpPlayers() {
-
-        //ask user about side
         CellContent answer = null;
         boolean iterator = true;
 
@@ -63,13 +61,11 @@ public class Game {
             if ("CROSS".equals(input)) {
                 answer = CellContent.CROSS;
                 break;
-
             } else if ("ZERO".equals(input)) {
                 answer = CellContent.ZERO;
                 break;
             } else if ("QUIT".equals(input)) {
                 System.exit(0);
-
             } else {
                 System.out.println("Please, make your choice");
             }
@@ -79,7 +75,7 @@ public class Game {
             playerCross = new HumanPlayer(board, CellContent.CROSS);
             playerZero = new AiMinMaxPlayer(board, CellContent.ZERO);
             board.print();
-        } else if (answer == CellContent.ZERO) {
+        } else {
             playerCross = new AiMinMaxPlayer(board, CellContent.CROSS);
             playerZero = new HumanPlayer(board, CellContent.ZERO);
         }

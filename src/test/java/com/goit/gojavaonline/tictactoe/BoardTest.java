@@ -51,8 +51,10 @@ public class BoardTest {
             board.print();
 
             Assert.assertTrue(board.isWin(CellContent.CROSS));
+            Assert.assertFalse(board.isWin(CellContent.ZERO));
         }
     }
+
 
     @Test
     public void testVerticalLinesIsWin() throws Exception {
@@ -61,6 +63,7 @@ public class BoardTest {
             board.print();
 
             Assert.assertTrue(board.isWin(CellContent.CROSS));
+            Assert.assertFalse(board.isWin(CellContent.ZERO));
         }
     }
 
@@ -69,9 +72,11 @@ public class BoardTest {
         setDiagonalLine1(CellContent.CROSS);
         board.print();
         Assert.assertTrue(board.isWin(CellContent.CROSS));
+        Assert.assertFalse(board.isWin(CellContent.ZERO));
 
         setDiagonalLine2(CellContent.CROSS);
         board.print();
         Assert.assertTrue(board.isWin(CellContent.CROSS));
+        Assert.assertFalse(board.isWin(CellContent.ZERO));
     }
 }

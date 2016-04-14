@@ -16,13 +16,12 @@ public class AiMinMaxPlayer extends Player {
 
     @Override
     public PlayerMove getNextMoves() {
-        return minimax(1, this.playerSide); // TODO: 13/04/2016 why first argument "1", move to minimax method
+        return minimax(1, this.playerSide);
     }
 
 
     private PlayerMove minimax(int depth, CellContent player) {
         List<Cell> emptyCells = this.board.getEmptyCells();
-
 
         PlayerMove tmpMove = new PlayerMove();
         PlayerMove resultMove = new PlayerMove();
