@@ -54,7 +54,7 @@ public class HumanPlayer extends Player {
 
                 } catch (TooFarFromRangeException e) {
 
-                    System.out.print("Your " + argument + "\'s value should be less then " + DIMENSION + "\n" + argument + ": ");
+                    System.out.print("Your " + argument + "\'s value should be less then " + Board.DIMENSION + "\n" + argument + ": ");
                     index = catchNegativeInput(argument);
                 }
             }

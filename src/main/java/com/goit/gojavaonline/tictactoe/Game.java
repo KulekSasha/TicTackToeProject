@@ -21,16 +21,16 @@ public class Game {
     public void startGame() {
         int turn = 1;
         gameState = GameState.PLAYING;
-        int[] nextMove;
+        PlayerMove nextMove;
         setUpPlayers();
 
         do {
             if (turn % 2 == 1) {
                 nextMove = playerCross.getNextMoves();
-                board.setUpCellContent(nextMove[0], nextMove[1], playerCross.getPlayerSide());
+                board.setUpCellContent(nextMove.getRow(), nextMove.getColumn(), playerCross.getPlayerSide());
             } else {
                 nextMove = playerZero.getNextMoves();
-                board.setUpCellContent(nextMove[0], nextMove[1], playerZero.getPlayerSide());
+                board.setUpCellContent(nextMove.getRow(), nextMove.getColumn(), playerZero.getPlayerSide());
             }
             board.print();
             turn++;
