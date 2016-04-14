@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 public class Board {
-    public static final int DIMENSION = 3; //TODO if dimension > 3 program calculates next step very long time
+    public static final int DIMENSION = 3;
 
     private Cell[][] cells;
 
@@ -104,18 +104,6 @@ public class Board {
         return false;
     }
 
-    @Override
-    protected Board clone() {
-        Board copyBoard = new Board();
-
-        for (int row = 0; row < DIMENSION; row++) {
-            for (int col = 0; col < DIMENSION; col++) {
-                copyBoard.cells[row][col].setContent(this.cells[row][col].getContent());
-            }
-        }
-        return copyBoard;
-    }
-
     public void print() {
         for (int row = 0; row < DIMENSION; ++row) {
             for (int col = 0; col < DIMENSION; ++col) {
@@ -124,5 +112,14 @@ public class Board {
             System.out.println();
         }
         System.out.println("--------------------");
+    }
+
+    public boolean setUpCellContent(int row, int col, CellContent content){
+        if (cells[row][col].getContent() != CellContent.EMPTY){
+            return false;
+        }else {
+            cells[row][col].setContent(content);
+            return true;
+        }
     }
 }

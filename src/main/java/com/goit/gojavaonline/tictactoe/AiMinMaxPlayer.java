@@ -8,6 +8,7 @@ import java.util.List;
 
 public class AiMinMaxPlayer extends Player {
     private CellContent oppositePlayer = getOppositePlayer(playerSide);
+    private final int initialDepth = 1;
 
     public AiMinMaxPlayer(Board board, CellContent playerSide) {
         super(board, playerSide);

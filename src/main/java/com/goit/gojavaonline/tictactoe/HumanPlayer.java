@@ -15,7 +15,7 @@ public class HumanPlayer extends Player {
                 return scanner.nextInt();
 
             } catch (InputMismatchException e) {
-                System.out.print("You have to print Integer " + input + "'s value\n" + input + ": " );
+                System.out.print("You have to print Integer " + input + "'s value\n" + input + ": ");
             }
         }
     }
@@ -54,7 +54,7 @@ public class HumanPlayer extends Player {
 
                 } catch (TooFarFromRangeException e) {
 
-                    System.out.print("Your " + argument + "\'s value should be less then " + Board.DIMENSION + "\n" + argument + ": ");
+                    System.out.print("Your " + argument + "\'s value should be less then " + DIMENSION + "\n" + argument + ": ");
                     index = catchNegativeInput(argument);
                 }
             }

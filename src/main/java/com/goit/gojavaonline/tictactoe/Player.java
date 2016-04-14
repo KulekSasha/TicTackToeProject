@@ -5,8 +5,8 @@ package com.goit.gojavaonline.tictactoe;
  */
 
 public abstract class Player {
-     CellContent playerSide;
-     Board board;
+    protected CellContent playerSide;
+    protected Board board;
 
 
     public Player(Board board, CellContent playerSide) {
