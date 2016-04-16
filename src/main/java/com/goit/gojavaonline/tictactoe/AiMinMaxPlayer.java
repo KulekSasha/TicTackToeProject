@@ -25,13 +25,13 @@ public class AiMinMaxPlayer extends Player {
 
         PlayerMove tmpMove = new PlayerMove();
         PlayerMove resultMove = new PlayerMove();
-        resultMove.setDepth(this.playerSide == player? Integer.MIN_VALUE : Integer.MAX_VALUE); //best score
+        resultMove.setDepth(this.playerSide == player ? Integer.MIN_VALUE : Integer.MAX_VALUE); //best score
 
-        if (board.isWin(player)) {
+        if (board.isWin(player) || board.isWin(getOppositePlayer(player))) {
             if (playerSide == player) {
-                return new PlayerMove(depth + 10, 0, 0);
-            } else {
                 return new PlayerMove(depth - 10, 0, 0);
+            } else {
+                return new PlayerMove(depth + 10, 0, 0);
             }
         } else if (!board.hasEmptyCell()) {
             return new PlayerMove(0, 0, 0);
@@ -46,7 +46,7 @@ public class AiMinMaxPlayer extends Player {
                     resultMove.setMove(tmpMove.getDepth(), cell.getRow(), cell.getCol());
                 }
             } else {
-                tmpMove.setDepth( minimax(depth + 1, playerSide).getDepth());
+                tmpMove.setDepth(minimax(depth + 1, playerSide).getDepth());
                 if (tmpMove.getDepth() < resultMove.getDepth()) {
                     resultMove.setMove(tmpMove.getDepth(), tmpMove.getRow(), tmpMove.getColumn());
                 }
