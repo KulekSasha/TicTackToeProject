@@ -14,7 +14,7 @@ public class AiMinMaxPlayerTest {
     private static Board board;
 
     @BeforeClass
-    public static void setUpClass(){
+    public static void setUpClass() {
         board = new Board();
     }
 
@@ -44,9 +44,9 @@ public class AiMinMaxPlayerTest {
     }
 
     @Test
-    public void testGetNextZeroMove1() throws  Exception{
+    public void testGetNextZeroMove1() throws Exception {
         board = new Board();
-        aiMinMaxPlayer = new AiMinMaxPlayer(board, CellContent.CROSS);
+        aiMinMaxPlayer = new AiMinMaxPlayer(board, CellContent.ZERO);
         board.setUpCellContent(0, 0, CellContent.ZERO);
         board.setUpCellContent(1, 0, CellContent.ZERO);
         board.setUpCellContent(1, 1, CellContent.ZERO);
@@ -55,7 +55,7 @@ public class AiMinMaxPlayerTest {
         board.setUpCellContent(2, 2, CellContent.CROSS);
         board.print();
 
-        PlayerMove expectedPlayerMove = new PlayerMove(0, 2, 0);
+        PlayerMove expectedPlayerMove = new PlayerMove(0, 0, 2);
 
         PlayerMove playerMove = aiMinMaxPlayer.getNextMoves();
 
@@ -63,7 +63,7 @@ public class AiMinMaxPlayerTest {
     }
 
     @Test
-    public void testGetNextZeroMove2() throws  Exception{
+    public void testGetNextZeroMove2() throws Exception {
         board = new Board();
         aiMinMaxPlayer = new AiMinMaxPlayer(board, CellContent.ZERO);
         board.setUpCellContent(0, 0, CellContent.CROSS);
