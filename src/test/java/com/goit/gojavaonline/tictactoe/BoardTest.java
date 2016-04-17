@@ -9,6 +9,7 @@ import org.junit.Test;
  * Created by tamila on 4/11/16.
  */
 public class BoardTest {
+
     private static Board board;
 
     @BeforeClass
@@ -79,4 +80,26 @@ public class BoardTest {
         Assert.assertTrue(board.isWin(CellContent.CROSS));
         Assert.assertFalse(board.isWin(CellContent.ZERO));
     }
+
+    @Test
+    public void clearBoard() throws Exception {
+        for (int i = 0; i < board.DIMENSION; i++) {
+            board.setUpCellContent(i,i,CellContent.CROSS);
+        }
+
+        board.clearBoard();
+
+        for (int i = 0; i < board.DIMENSION; i++) {
+            for (int j = 0; j < board.DIMENSION; j++) {
+                Assert.assertEquals(CellContent.EMPTY,board.getCells()[i][j].getContent());
+            }
+        }
+
+
+    }
+
+
 }
+
+
+
