@@ -127,7 +127,7 @@ public class Board {
         }
     }
 
-    public boolean isEmptyCell(int row, int col) {
+    public boolean isCellEmpty(int row, int col) {
         return cells[row][col].getContent() == CellContent.EMPTY;
     }
 }
