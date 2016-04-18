@@ -86,7 +86,7 @@ public class Game {
     }
 
     private void playAgain() {
-        if(userInteraction.ask("Do you want to play once more?\n'Y' - yes\n'any key' - no").equals("Y")){
+        if(userInteraction.ask("Do you want to play once more?\n'Y' - yes\n'any key' - no\n").equals("Y")){
             board.clearBoard();
             startGame();
         }
