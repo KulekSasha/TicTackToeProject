@@ -57,7 +57,7 @@ public class Game {
                 "What do you prefer to play with: crosses or zeroes (type CROSS or ZERO, QUIT for quit)\n");
 
         while(true){
-            String input = userInteraction.ask("Please, make your choice");
+            String input = userInteraction.ask("Please, make your choice: ");
             if ("CROSS".equals(input)) {
                 initializePlayers(new HumanPlayer(board, CellContent.CROSS),
                         new AiMinMaxPlayer(board, CellContent.ZERO));
