@@ -8,7 +8,7 @@ import java.util.List;
 
 public class AiMinMaxPlayer extends Player {
     private CellContent oppositePlayer = getOppositePlayer(playerSide);
-    private final int initialDepth = 1;
+    private static final int INITIAL_DEPTH = 1;
 
     public AiMinMaxPlayer(Board board, CellContent playerSide) {
         super(board, playerSide);
@@ -16,7 +16,7 @@ public class AiMinMaxPlayer extends Player {
 
     @Override
     public PlayerMove getNextMove() {
-        return minimax(1, this.playerSide);
+        return minimax(INITIAL_DEPTH, this.playerSide);
     }
 
 
