@@ -26,6 +26,7 @@ public class HumanPlayer extends Player {
 
         int row;
         int column;
+
         while(true){
             userInteraction.say("Please, make your move:");
             try{
