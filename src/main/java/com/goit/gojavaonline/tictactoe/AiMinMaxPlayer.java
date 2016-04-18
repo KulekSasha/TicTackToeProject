@@ -15,7 +15,7 @@ public class AiMinMaxPlayer extends Player {
     }
 
     @Override
-    public PlayerMove getNextMoves() {
+    public PlayerMove getNextMove() {
         return minimax(1, this.playerSide);
     }
 

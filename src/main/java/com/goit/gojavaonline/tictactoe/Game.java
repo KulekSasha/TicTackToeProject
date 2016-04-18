@@ -29,10 +29,10 @@ public class Game {
 
         do {
             if (turn % 2 == 1) {
-                nextMove = playerCross.getNextMoves();
+                nextMove = playerCross.getNextMove();
                 board.setUpCellContent(nextMove.getRow(), nextMove.getColumn(), playerCross.getPlayerSide());
             } else {
-                nextMove = playerZero.getNextMoves();
+                nextMove = playerZero.getNextMove();
                 board.setUpCellContent(nextMove.getRow(), nextMove.getColumn(), playerZero.getPlayerSide());
             }
             userInteraction.drawBoard(board);

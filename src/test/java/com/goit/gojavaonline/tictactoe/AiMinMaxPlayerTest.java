@@ -40,7 +40,7 @@ public class AiMinMaxPlayerTest {
 
         PlayerMove expectedPlayerMove = new PlayerMove(0, 2, 0);
 
-        PlayerMove playerMove = aiMinMaxPlayer.getNextMoves();
+        PlayerMove playerMove = aiMinMaxPlayer.getNextMove();
 
         Assert.assertTrue(playerMove.equalsMoveCell(expectedPlayerMove));
     }
@@ -59,7 +59,7 @@ public class AiMinMaxPlayerTest {
 
         PlayerMove expectedPlayerMove = new PlayerMove(0, 0, 2);
 
-        PlayerMove playerMove = aiMinMaxPlayer.getNextMoves();
+        PlayerMove playerMove = aiMinMaxPlayer.getNextMove();
 
         Assert.assertFalse(playerMove.equalsMoveCell(expectedPlayerMove));
     }
@@ -75,7 +75,7 @@ public class AiMinMaxPlayerTest {
 
         PlayerMove expectedPlayerMove = new PlayerMove(0, 0, 2);
 
-        PlayerMove playerMove = aiMinMaxPlayer.getNextMoves();
+        PlayerMove playerMove = aiMinMaxPlayer.getNextMove();
 
         Assert.assertTrue(playerMove.equalsMoveCell(expectedPlayerMove));
     }

@@ -22,7 +22,7 @@ public class HumanPlayer extends Player {
     }
 
     @Override
-    public PlayerMove getNextMoves() {
+    public PlayerMove getNextMove() {
 
         int row;
         int column;
