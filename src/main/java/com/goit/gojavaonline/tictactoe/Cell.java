@@ -34,18 +34,8 @@ public class Cell {
         content = CellContent.EMPTY;
     }
 
-    public void paint() {
-        switch (content) {
-            case CROSS:
-                System.out.print(" X ");
-                break;
-            case ZERO:
-                System.out.print(" O ");
-                break;
-            case EMPTY:
-                System.out.print(" _ ");
-                break;
-        }
+    public String getCellContentDescription(){
+        return content.getCellContentDescription();
     }
 }
 

@@ -12,10 +12,12 @@ public class AiMinMaxPlayerTest {
 
     private static AiMinMaxPlayer aiMinMaxPlayer;
     private static Board board;
+    private static UserInteraction userInteraction;
 
     @BeforeClass
     public static void setUpClass() {
         board = new Board();
+        userInteraction = new ConsoleUserInteraction();
     }
 
     @Before
@@ -34,7 +36,7 @@ public class AiMinMaxPlayerTest {
         board.setUpCellContent(0, 1, CellContent.ZERO);
         board.setUpCellContent(1, 2, CellContent.ZERO);
         board.setUpCellContent(2, 2, CellContent.ZERO);
-        board.print();
+        userInteraction.say(board);
 
         PlayerMove expectedPlayerMove = new PlayerMove(0, 2, 0);
 
@@ -53,7 +55,7 @@ public class AiMinMaxPlayerTest {
         board.setUpCellContent(0, 1, CellContent.CROSS);
         board.setUpCellContent(1, 2, CellContent.CROSS);
         board.setUpCellContent(2, 2, CellContent.CROSS);
-        board.print();
+        userInteraction.say(board);
 
         PlayerMove expectedPlayerMove = new PlayerMove(0, 0, 2);
 
@@ -69,7 +71,7 @@ public class AiMinMaxPlayerTest {
         board.setUpCellContent(0, 0, CellContent.CROSS);
         board.setUpCellContent(0, 1, CellContent.CROSS);
         board.setUpCellContent(1, 1, CellContent.ZERO);
-        board.print();
+        userInteraction.say(board);
 
         PlayerMove expectedPlayerMove = new PlayerMove(0, 0, 2);
 

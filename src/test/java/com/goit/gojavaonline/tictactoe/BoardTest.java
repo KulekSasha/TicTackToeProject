@@ -11,10 +11,12 @@ import org.junit.Test;
 public class BoardTest {
 
     private static Board board;
+    private static UserInteraction userInteraction;
 
     @BeforeClass
     public static void setUpClass(){
         board = new Board();
+        userInteraction = new ConsoleUserInteraction();
     }
 
     private void setHorizontalLine(int rowNumber, CellContent cellContent){
@@ -49,7 +51,7 @@ public class BoardTest {
     public void testHorizontalLinesIsWin() throws Exception {
         for(int i = 0; i < board.getCells().length; i++){
             setHorizontalLine(i, CellContent.CROSS);
-            board.print();
+            userInteraction.say(board);
 
             Assert.assertTrue(board.isWin(CellContent.CROSS));
             Assert.assertFalse(board.isWin(CellContent.ZERO));
@@ -61,7 +63,7 @@ public class BoardTest {
     public void testVerticalLinesIsWin() throws Exception {
         for(int i = 0; i < board.getCells()[0].length; i++){
             setVerticalLine(i, CellContent.CROSS);
-            board.print();
+            userInteraction.say(board);
 
             Assert.assertTrue(board.isWin(CellContent.CROSS));
             Assert.assertFalse(board.isWin(CellContent.ZERO));
@@ -71,12 +73,12 @@ public class BoardTest {
     @Test
     public void testDiagonalLinesIsWin() throws Exception {
         setDiagonalLine1(CellContent.CROSS);
-        board.print();
+        userInteraction.say(board);
         Assert.assertTrue(board.isWin(CellContent.CROSS));
         Assert.assertFalse(board.isWin(CellContent.ZERO));
 
         setDiagonalLine2(CellContent.CROSS);
-        board.print();
+        userInteraction.say(board);
         Assert.assertTrue(board.isWin(CellContent.CROSS));
         Assert.assertFalse(board.isWin(CellContent.ZERO));
     }

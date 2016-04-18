@@ -1,21 +1,18 @@
 package com.goit.gojavaonline.tictactoe;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 /**
  * Created by SashaKulek on 07/04/2016.
  */
 
 public class HumanPlayer extends Player {
+    private static UserInteraction userInteraction = new ConsoleUserInteraction();
+
     private static int readInt(String input){
         while(true) {
             try {
-                Scanner scanner = new Scanner(System.in);
-                return scanner.nextInt();
-
-            } catch (InputMismatchException e) {
-                System.out.print("You have to print Integer " + input + "'s value\n" + input + ": ");
+                return Integer.parseInt( userInteraction.ask(input + ": ") );
+            } catch (NumberFormatException e) {
+                userInteraction.sayError("You have to print Integer value\n");
             }
         }
     }
@@ -29,60 +26,30 @@ public class HumanPlayer extends Player {
 
         int row;
         int column;
-        do {
-            System.out.println("Please, make your move:");
+        while(true){
+            userInteraction.say("Please, make your move:");
+            try{
+                row = getMovingIndex( "row");
+                column = getMovingIndex( "column");
+                break;
+            } catch (NegativeIntegerInputException | TooFarFromRangeException exception){
+                userInteraction.sayError(exception.getMessage());
+            }
+        }
 
-            System.out.print("row: ");
-            row = getMovingIndex("row");
-
-            System.out.print("column: ");
-            column = getMovingIndex("column");
-
-        } while (!isEmptyCell(row, column));
         return new PlayerMove(0, row, column);
     }
 
-    private int getMovingIndex(String argument) {
-
-        int index = catchNegativeInput(argument);
-
-        if (index >= Board.DIMENSION) {
-
-            while (index >= Board.DIMENSION) {
-                try {
-                    throw new TooFarFromRangeException(index);
-
-                } catch (TooFarFromRangeException e) {
-
-                    System.out.print("Your " + argument + "\'s value should be less then " + Board.DIMENSION + "\n" + argument + ": ");
-                    index = catchNegativeInput(argument);
-                }
-            }
-        }
-        return index;
-    }
-
-    private int catchNegativeInput(String argument) {
-
+    private int getMovingIndex(String argument) throws NegativeIntegerInputException, TooFarFromRangeException {
         int input = readInt(argument) - 1;
 
-        if (input < 0) {
-
-            while (input < 0) {
-                try {
-                    throw new NegativeIntegerInputException("To good to be true");
-
-                } catch (NegativeIntegerInputException e) {
-
-                    System.out.print("You should enter an Integer value which is above zero\n" + argument + ": ");
-                    input = readInt(argument) - 1;
-                }
-            }
+        if(input < 0){
+            throw new NegativeIntegerInputException("You should enter an Integer value which is above zero\n");
+        } else if(input >= Board.DIMENSION){
+            throw new TooFarFromRangeException(input, "Your " + argument + "\'s value should be less then " + Board.DIMENSION + "\n");
         }
         return input;
     }
 
-    private boolean isEmptyCell(int row, int col) {
-        return board.getCells()[row][col].getContent() == CellContent.EMPTY;
-    }
+
 }

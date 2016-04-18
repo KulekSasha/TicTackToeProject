@@ -104,14 +104,18 @@ public class Board {
         return false;
     }
 
-    public void print() {
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
         for (int row = 0; row < DIMENSION; ++row) {
             for (int col = 0; col < DIMENSION; ++col) {
-                cells[row][col].paint();
+                stringBuilder.append(cells[row][col].getCellContentDescription());
             }
-            System.out.println();
+            stringBuilder.append("\n");
         }
-        System.out.println("--------------------");
+        stringBuilder.append("--------------------");
+
+        return stringBuilder.toString();
     }
 
     public boolean setUpCellContent(int row, int col, CellContent content){
@@ -121,5 +125,9 @@ public class Board {
             cells[row][col].setContent(content);
             return true;
         }
+    }
+
+    public boolean isEmptyCell(int row, int col) {
+        return cells[row][col].getContent() == CellContent.EMPTY;
     }
 }

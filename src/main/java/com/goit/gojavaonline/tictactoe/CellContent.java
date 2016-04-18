@@ -5,5 +5,16 @@ package com.goit.gojavaonline.tictactoe;
  */
 
 public enum CellContent {
-    EMPTY,CROSS,ZERO
+    EMPTY(" _ "),CROSS(" X "),ZERO(" O ");
+
+    private final String cellContentDescription;
+
+    private CellContent(String value) {
+        cellContentDescription = value;
+    }
+
+    public String getCellContentDescription() {
+        return cellContentDescription;
+    }
+
 }

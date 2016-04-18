@@ -1,7 +1,5 @@
 package com.goit.gojavaonline.tictactoe;
 
-import java.util.Scanner;
-
 /**
  * Created by SashaKulek on 07/04/2016.
  */
@@ -11,12 +9,17 @@ public class Game {
     private Player playerCross;
     private Player playerZero;
     private GameState gameState;
-    private Scanner scanner = new Scanner(System.in);
+    private UserInteraction userInteraction;
 
-    public Game(Board board) {
+    public Game(Board board, UserInteraction userInteraction) {
         this.board = board;
+        this.userInteraction = userInteraction;
     }
 
+    private void initializePlayers(Player playerCross, Player playerZero){
+        this.playerCross = playerCross;
+        this.playerZero = playerZero;
+    }
 
     public void startGame() {
         int turn = 1;
@@ -32,11 +35,11 @@ public class Game {
                 nextMove = playerZero.getNextMoves();
                 board.setUpCellContent(nextMove.getRow(), nextMove.getColumn(), playerZero.getPlayerSide());
             }
-            board.print();
+            userInteraction.say(board);
             turn++;
             gameState = updateGameStatus();
         } while (gameState == GameState.PLAYING);
-        System.out.println(getGameResult());
+        userInteraction.say( getGameResult() );
         playAgain();
     }
 
@@ -50,34 +53,23 @@ public class Game {
 
 
     private void setUpPlayers() {
-        CellContent answer = null;
-        boolean iterator = true;
-
-        System.out.println("Welcome to a tick-tack-toe game!\n" +
+        userInteraction.say("Welcome to a tick-tack-toe game!\n" +
                 "What do you prefer to play with: crosses or zeroes (type CROSS or ZERO, QUIT for quit)\n");
 
-        while (iterator) {
-            String input = scanner.nextLine().toUpperCase();
+        while(true){
+            String input = userInteraction.ask("Please, make your choice");
             if ("CROSS".equals(input)) {
-                answer = CellContent.CROSS;
+                initializePlayers(new HumanPlayer(board, CellContent.CROSS),
+                        new AiMinMaxPlayer(board, CellContent.ZERO));
+                userInteraction.say(board);
                 break;
             } else if ("ZERO".equals(input)) {
-                answer = CellContent.ZERO;
+                initializePlayers(new AiMinMaxPlayer(board, CellContent.CROSS),
+                        new HumanPlayer(board, CellContent.ZERO));
                 break;
             } else if ("QUIT".equals(input)) {
-                System.exit(0);
-            } else {
-                System.out.println("Please, make your choice");
+                userInteraction.endGame();
             }
-        }
-
-        if (answer == CellContent.CROSS) {
-            playerCross = new HumanPlayer(board, CellContent.CROSS);
-            playerZero = new AiMinMaxPlayer(board, CellContent.ZERO);
-            board.print();
-        } else {
-            playerCross = new AiMinMaxPlayer(board, CellContent.CROSS);
-            playerZero = new HumanPlayer(board, CellContent.ZERO);
         }
     }
 
@@ -94,8 +86,7 @@ public class Game {
     }
 
     private void playAgain() {
-        System.out.println("Dp you want to play once more?\n'Y' - yes\n'any key' - no");
-        if (scanner.hasNext("y") || scanner.hasNext("Y")) {
+        if(userInteraction.ask("Do you want to play once more?\n'Y' - yes\n'any key' - no").equals("Y")){
             board.clearBoard();
             startGame();
         }
