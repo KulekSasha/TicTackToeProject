@@ -7,8 +7,7 @@ package com.goit.gojavaonline.tictactoe;
 public class Runner {
     public static void main(String[] args) {
         Board b = new Board();
-        UserInteraction userInteraction = new ConsoleUserInteraction();
-        Game game = new Game(b, userInteraction);
+        Game game = new Game(b, UserInteractionRepository.getDefaultUserInteraction());
         game.startGame();
     }
 }

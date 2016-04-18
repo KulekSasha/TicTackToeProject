@@ -5,7 +5,7 @@ package com.goit.gojavaonline.tictactoe;
  */
 
 public class HumanPlayer extends Player {
-    private static UserInteraction userInteraction = new ConsoleUserInteraction();
+    private static UserInteraction userInteraction = UserInteractionRepository.getDefaultUserInteraction();
 
     private static int readInt(String input){
         while(true) {

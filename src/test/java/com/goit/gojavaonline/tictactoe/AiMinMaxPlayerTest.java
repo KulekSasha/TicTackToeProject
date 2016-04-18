@@ -36,7 +36,7 @@ public class AiMinMaxPlayerTest {
         board.setUpCellContent(0, 1, CellContent.ZERO);
         board.setUpCellContent(1, 2, CellContent.ZERO);
         board.setUpCellContent(2, 2, CellContent.ZERO);
-        userInteraction.say(board);
+        userInteraction.drawBoard(board);
 
         PlayerMove expectedPlayerMove = new PlayerMove(0, 2, 0);
 
@@ -55,7 +55,7 @@ public class AiMinMaxPlayerTest {
         board.setUpCellContent(0, 1, CellContent.CROSS);
         board.setUpCellContent(1, 2, CellContent.CROSS);
         board.setUpCellContent(2, 2, CellContent.CROSS);
-        userInteraction.say(board);
+        userInteraction.drawBoard(board);
 
         PlayerMove expectedPlayerMove = new PlayerMove(0, 0, 2);
 
@@ -71,7 +71,7 @@ public class AiMinMaxPlayerTest {
         board.setUpCellContent(0, 0, CellContent.CROSS);
         board.setUpCellContent(0, 1, CellContent.CROSS);
         board.setUpCellContent(1, 1, CellContent.ZERO);
-        userInteraction.say(board);
+        userInteraction.drawBoard(board);
 
         PlayerMove expectedPlayerMove = new PlayerMove(0, 0, 2);
 

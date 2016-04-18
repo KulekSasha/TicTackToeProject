@@ -51,7 +51,7 @@ public class BoardTest {
     public void testHorizontalLinesIsWin() throws Exception {
         for(int i = 0; i < board.getCells().length; i++){
             setHorizontalLine(i, CellContent.CROSS);
-            userInteraction.say(board);
+            userInteraction.drawBoard(board);
 
             Assert.assertTrue(board.isWin(CellContent.CROSS));
             Assert.assertFalse(board.isWin(CellContent.ZERO));
@@ -63,7 +63,7 @@ public class BoardTest {
     public void testVerticalLinesIsWin() throws Exception {
         for(int i = 0; i < board.getCells()[0].length; i++){
             setVerticalLine(i, CellContent.CROSS);
-            userInteraction.say(board);
+            userInteraction.drawBoard(board);
 
             Assert.assertTrue(board.isWin(CellContent.CROSS));
             Assert.assertFalse(board.isWin(CellContent.ZERO));
@@ -73,12 +73,12 @@ public class BoardTest {
     @Test
     public void testDiagonalLinesIsWin() throws Exception {
         setDiagonalLine1(CellContent.CROSS);
-        userInteraction.say(board);
+        userInteraction.drawBoard(board);
         Assert.assertTrue(board.isWin(CellContent.CROSS));
         Assert.assertFalse(board.isWin(CellContent.ZERO));
 
         setDiagonalLine2(CellContent.CROSS);
-        userInteraction.say(board);
+        userInteraction.drawBoard(board);
         Assert.assertTrue(board.isWin(CellContent.CROSS));
         Assert.assertFalse(board.isWin(CellContent.ZERO));
     }
