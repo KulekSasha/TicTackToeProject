@@ -47,7 +47,7 @@ public class Game {
         if (gameState == GameState.DRAW) {
             return gameState.toString();
         } else {
-            return gameState.toString() + " won!";
+            return gameState.toString();
         }
     }
 
