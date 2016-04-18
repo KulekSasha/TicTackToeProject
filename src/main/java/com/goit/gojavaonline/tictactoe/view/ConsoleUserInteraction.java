@@ -22,7 +22,7 @@ public class ConsoleUserInteraction implements UserInteraction {
 
     @Override
     public void drawBoard(Board board) {
-        System.out.println(board.toString());
+        System.out.println(ANSI_YELLOW + board.toString() + ANSI_RESET);
     }
 
     @Override
