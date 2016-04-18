@@ -1,4 +1,4 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.model;
 
 /**
  * Created by tamila on 4/12/16.

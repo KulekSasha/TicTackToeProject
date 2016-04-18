@@ -1,4 +1,4 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.model;
 
 import java.util.ArrayList;
 import java.util.List;

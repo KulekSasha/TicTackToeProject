@@ -1,4 +1,6 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.view;
+
+import com.goit.gojavaonline.tictactoe.model.Board;
 
 import java.util.Scanner;
 

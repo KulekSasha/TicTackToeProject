@@ -1,5 +1,11 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.controller;
 
+import com.goit.gojavaonline.tictactoe.controller.AiMinMaxPlayer;
+import com.goit.gojavaonline.tictactoe.controller.PlayerMove;
+import com.goit.gojavaonline.tictactoe.model.Board;
+import com.goit.gojavaonline.tictactoe.model.CellContent;
+import com.goit.gojavaonline.tictactoe.view.ConsoleUserInteraction;
+import com.goit.gojavaonline.tictactoe.view.UserInteraction;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;

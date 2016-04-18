@@ -1,4 +1,4 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.controller;
 
 import org.junit.Test;
 

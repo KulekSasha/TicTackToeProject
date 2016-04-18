@@ -1,5 +1,13 @@
 package com.goit.gojavaonline.tictactoe;
 
+import com.goit.gojavaonline.tictactoe.controller.AiMinMaxPlayer;
+import com.goit.gojavaonline.tictactoe.controller.HumanPlayer;
+import com.goit.gojavaonline.tictactoe.controller.Player;
+import com.goit.gojavaonline.tictactoe.controller.PlayerMove;
+import com.goit.gojavaonline.tictactoe.model.Board;
+import com.goit.gojavaonline.tictactoe.model.CellContent;
+import com.goit.gojavaonline.tictactoe.view.UserInteraction;
+
 /**
  * Created by SashaKulek on 07/04/2016.
  */

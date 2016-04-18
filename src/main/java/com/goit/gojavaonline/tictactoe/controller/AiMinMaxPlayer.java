@@ -1,4 +1,8 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.controller;
+
+import com.goit.gojavaonline.tictactoe.model.Board;
+import com.goit.gojavaonline.tictactoe.model.Cell;
+import com.goit.gojavaonline.tictactoe.model.CellContent;
 
 import java.util.List;
 
