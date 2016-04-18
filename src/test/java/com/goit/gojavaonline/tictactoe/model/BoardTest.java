@@ -112,7 +112,19 @@ public class BoardTest {
         List<Cell> emptyCells = board.getEmptyCells();
 
         Assert.assertNotNull(emptyCells);
-        Assert.assertEquals("size of list is wrong",(board.DIMENSION * board.DIMENSION) - 2, emptyCells.size());
+        Assert.assertEquals("size of list is wrong", (board.DIMENSION * board.DIMENSION) - 2, emptyCells.size());
+    }
+
+    @Test
+    public void isCellEmpty() throws Exception {
+        board.setUpCellContent(0, 0, CellContent.CROSS);
+        board.setUpCellContent(0, 1, CellContent.ZERO);
+
+        Assert.assertEquals("assert_1", false, board.isCellEmpty(0, 0));
+        Assert.assertEquals("assert_2", false, board.isCellEmpty(0, 1));
+        Assert.assertEquals("assert_3", true, board.isCellEmpty(1, 1));
+        Assert.assertEquals("assert_4", true, board.isCellEmpty(2, 2));
+
     }
 
 }
