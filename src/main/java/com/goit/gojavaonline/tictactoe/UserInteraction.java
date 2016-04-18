@@ -5,7 +5,7 @@ package com.goit.gojavaonline.tictactoe;
  */
 public interface UserInteraction {
     void say(String message);
-    void say(Board board);
+    void drawBoard(Board board);
     void sayError(String message);
     String ask(String message);
     void endGame();

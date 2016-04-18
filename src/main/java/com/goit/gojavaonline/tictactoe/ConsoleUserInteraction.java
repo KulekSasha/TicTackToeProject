@@ -15,7 +15,7 @@ public class ConsoleUserInteraction implements UserInteraction {
     }
 
     @Override
-    public void say(Board board) {
+    public void drawBoard(Board board) {
         System.out.println(board.toString());
     }
 

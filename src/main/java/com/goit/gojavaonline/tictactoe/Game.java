@@ -35,7 +35,7 @@ public class Game {
                 nextMove = playerZero.getNextMoves();
                 board.setUpCellContent(nextMove.getRow(), nextMove.getColumn(), playerZero.getPlayerSide());
             }
-            userInteraction.say(board);
+            userInteraction.drawBoard(board);
             turn++;
             gameState = updateGameStatus();
         } while (gameState == GameState.PLAYING);
@@ -61,7 +61,7 @@ public class Game {
             if ("CROSS".equals(input)) {
                 initializePlayers(new HumanPlayer(board, CellContent.CROSS),
                         new AiMinMaxPlayer(board, CellContent.ZERO));
-                userInteraction.say(board);
+                userInteraction.drawBoard(board);
                 break;
             } else if ("ZERO".equals(input)) {
                 initializePlayers(new AiMinMaxPlayer(board, CellContent.CROSS),
