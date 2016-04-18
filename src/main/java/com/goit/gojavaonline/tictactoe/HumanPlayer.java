@@ -31,7 +31,11 @@ public class HumanPlayer extends Player {
             try{
                 row = getMovingIndex( "row");
                 column = getMovingIndex( "column");
-                break;
+                if(!super.board.isCellEmpty(row,column)){
+                    userInteraction.sayError("The cell is not empty. Please select other cell.");
+                }else {
+                    break;
+                }
             } catch (NegativeIntegerInputException | TooFarFromRangeException exception){
                 userInteraction.sayError(exception.getMessage());
             }
