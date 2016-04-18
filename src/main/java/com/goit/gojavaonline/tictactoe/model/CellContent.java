@@ -9,7 +9,7 @@ public enum CellContent {
 
     private final String cellContentDescription;
 
-    private CellContent(String value) {
+    CellContent(String value) {
         cellContentDescription = value;
     }
 
