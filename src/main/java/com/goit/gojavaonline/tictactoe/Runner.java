@@ -1,5 +1,8 @@
 package com.goit.gojavaonline.tictactoe;
 
+import com.goit.gojavaonline.tictactoe.model.Board;
+import com.goit.gojavaonline.tictactoe.view.UserInteractionRepository;
+
 /**
  * Created by SashaKulek on 08/04/2016.
  */

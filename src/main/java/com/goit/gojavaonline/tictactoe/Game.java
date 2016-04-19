@@ -1,5 +1,13 @@
 package com.goit.gojavaonline.tictactoe;
 
+import com.goit.gojavaonline.tictactoe.controller.AiMinMaxPlayer;
+import com.goit.gojavaonline.tictactoe.controller.HumanPlayer;
+import com.goit.gojavaonline.tictactoe.controller.Player;
+import com.goit.gojavaonline.tictactoe.controller.PlayerMove;
+import com.goit.gojavaonline.tictactoe.model.Board;
+import com.goit.gojavaonline.tictactoe.model.CellContent;
+import com.goit.gojavaonline.tictactoe.view.UserInteraction;
+
 /**
  * Created by SashaKulek on 07/04/2016.
  */
@@ -29,10 +37,10 @@ public class Game {
 
         do {
             if (turn % 2 == 1) {
-                nextMove = playerCross.getNextMoves();
+                nextMove = playerCross.getNextMove();
                 board.setUpCellContent(nextMove.getRow(), nextMove.getColumn(), playerCross.getPlayerSide());
             } else {
-                nextMove = playerZero.getNextMoves();
+                nextMove = playerZero.getNextMove();
                 board.setUpCellContent(nextMove.getRow(), nextMove.getColumn(), playerZero.getPlayerSide());
             }
             userInteraction.drawBoard(board);
@@ -47,7 +55,7 @@ public class Game {
         if (gameState == GameState.DRAW) {
             return gameState.toString();
         } else {
-            return gameState.toString() + " won!";
+            return gameState.toString();
         }
     }
 
@@ -57,7 +65,7 @@ public class Game {
                 "What do you prefer to play with: crosses or zeroes (type CROSS or ZERO, QUIT for quit)\n");
 
         while(true){
-            String input = userInteraction.ask("Please, make your choice");
+            String input = userInteraction.ask("Please, make your choice: ");
             if ("CROSS".equals(input)) {
                 initializePlayers(new HumanPlayer(board, CellContent.CROSS),
                         new AiMinMaxPlayer(board, CellContent.ZERO));
@@ -86,7 +94,7 @@ public class Game {
     }
 
     private void playAgain() {
-        if(userInteraction.ask("Do you want to play once more?\n'Y' - yes\n'any key' - no").equals("Y")){
+        if(userInteraction.ask("Do you want to play once more?\n'Y' - yes\n'any key' - no\n").equals("Y")){
             board.clearBoard();
             startGame();
         }

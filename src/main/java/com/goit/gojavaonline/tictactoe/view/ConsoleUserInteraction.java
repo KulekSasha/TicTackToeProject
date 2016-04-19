@@ -1,4 +1,6 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.view;
+
+import com.goit.gojavaonline.tictactoe.model.Board;
 
 import java.util.Scanner;
 
@@ -6,6 +8,10 @@ import java.util.Scanner;
  * Created by tamila on 4/18/16.
  */
 public class ConsoleUserInteraction implements UserInteraction {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -16,17 +22,17 @@ public class ConsoleUserInteraction implements UserInteraction {
 
     @Override
     public void drawBoard(Board board) {
-        System.out.println(board.toString());
+        System.out.println(ANSI_YELLOW + board.toString() + ANSI_RESET);
     }
 
     @Override
     public void sayError(String message) {
-        System.err.println(message);
+        System.out.println(ANSI_RED + message + ANSI_RESET);
     }
 
     @Override
     public String ask(String message) {
-        System.out.println(message);
+        System.out.print(message);
         return scanner.nextLine().toUpperCase();
     }
 

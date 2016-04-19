@@ -1,4 +1,4 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +90,9 @@ public class Board {
     }
 
     public boolean isWin(CellContent playerSide) {
-        return hasLine(playerSide, LineDirection.HORIZONTAL) || hasLine(playerSide, LineDirection.VERTICAL) || hasLine(playerSide, LineDirection.DIAGONAL);
+        return hasLine(playerSide, LineDirection.HORIZONTAL)
+                || hasLine(playerSide, LineDirection.VERTICAL)
+                || hasLine(playerSide, LineDirection.DIAGONAL);
     }
 
     public boolean hasEmptyCell() {

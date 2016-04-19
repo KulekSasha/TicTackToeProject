@@ -1,4 +1,4 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.view;
 
 /**
  * Created by tamila on 4/18/16.
