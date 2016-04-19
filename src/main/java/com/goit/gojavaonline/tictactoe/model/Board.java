@@ -55,8 +55,8 @@ public class Board {
         for (int i = 0; i < DIMENSION; i++) {
             hasLine = true;
             for (int j = 0; j < DIMENSION; j++) {
-                if (lineDirection == LineDirection.VERTICAL ?
-                        cells[j][i].getContent() != cellContent : cells[i][j].getContent() != cellContent) {
+                if(lineDirection == LineDirection.VERTICAL && cells[j][i].getContent() != cellContent ||
+                        lineDirection == LineDirection.HORIZONTAL && cells[i][j].getContent() != cellContent){
                     hasLine = false;
                     break;
                 }
