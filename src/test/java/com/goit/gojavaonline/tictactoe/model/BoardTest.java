@@ -87,7 +87,7 @@ public class BoardTest {
     }
 
     @Test
-    public void clearBoard() {
+    public void clearBoard() throws Exception {
         for (int i = 0; i < Board.DIMENSION; i++) {
             board.setUpCellContent(i, i, CellContent.CROSS);
         }
@@ -128,6 +128,57 @@ public class BoardTest {
         Assert.assertEquals("assert_4", true, board.isCellEmpty(2, 2));
 
     }
+
+    @Test
+    public void hasEmptyCell() throws Exception {
+        for (int i = 0; i < board.DIMENSION; i++) {
+            for (int j = 0; j < board.DIMENSION; j++) {
+                board.getCells()[i][j].setContent(CellContent.CROSS);
+            }
+        }
+        Assert.assertFalse("filled board is passed", board.hasEmptyCell());
+
+        board.getCells()[2][2].setContent(CellContent.EMPTY);
+        Assert.assertTrue("one cell is empty", board.hasEmptyCell());
+
+        board.clearBoard();
+        Assert.assertTrue("empty board is passed", board.hasEmptyCell());
+
+        board.getCells()[2][2].setContent(CellContent.ZERO);
+        Assert.assertTrue("one cell is filled", board.hasEmptyCell());
+    }
+
+    @Test
+    public void toStringTest() throws Exception {
+        board.clearBoard();
+
+        board.getCells()[1][1].setContent(CellContent.CROSS);
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int row = 0; row < board.DIMENSION; ++row) {
+            for (int col = 0; col < board.DIMENSION; ++col) {
+                stringBuilder.append(board.getCells()[row][col].getCellContentDescription());
+            }
+            stringBuilder.append("\n");
+        }
+        stringBuilder.append("--------------------");
+
+        Assert.assertTrue("compare toString", stringBuilder.toString().equals(board.toString()));
+
+    }
+
+    @Test
+    public void setUpCellContent() throws Exception {
+        board.clearBoard();
+
+        board.getCells()[0][0].setContent(CellContent.ZERO);
+        Assert.assertFalse("try to fill ZERO cell with CROSS", board.setUpCellContent(0, 0, CellContent.CROSS));
+
+        board.getCells()[0][0].setContent(CellContent.EMPTY);
+        Assert.assertTrue("try to fill EMPTY cell with CROSS", board.setUpCellContent(0, 0, CellContent.CROSS));
+
+    }
+
 
 }
 
