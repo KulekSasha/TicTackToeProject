@@ -26,23 +26,24 @@ public class HumanPlayerTest {
         humanPlayer = new HumanPlayer(board, CellContent.CROSS);
     }
 
-    @Test
+    @Test(timeout = 1000)
     public void testGetNextMove() throws Exception {
 
-        int expectedRow = 0;
-        int expectedColumn = 1;
+        int InsertRow = 2;
+        int InsertColumn = 2;
 
         UserInput row = mock(UserInput.class);
-        when(row.getMovingIndex("row")).thenReturn(expectedRow);
+        when(row.getMovingIndex("row")).thenReturn(InsertRow);
 
         UserInput column = mock(UserInput.class);
-        when(column.getMovingIndex("column")).thenReturn(expectedColumn);
+        when(column.getMovingIndex("column")).thenReturn(InsertColumn);
 
-        humanPlayer.userInput = row;
-        humanPlayer.userInput = column;
+        humanPlayer.userInputRow = row;
+        humanPlayer.userInputColumn = column;
+
         PlayerMove playerMove = humanPlayer.getNextMove();
 
-        PlayerMove expectedPlayerMove = new PlayerMove(0, 0, 1);
+        PlayerMove expectedPlayerMove = new PlayerMove(0, 2, 2);
         Assert.assertTrue(playerMove.equalsMoveCell(expectedPlayerMove));
 
     }

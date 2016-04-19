@@ -19,7 +19,8 @@ public class HumanPlayer extends Player {
         super(board, playerSide);
     }
 
-    UserInput userInput = new UserInput();
+    UserInput userInputRow = new UserInput();
+    UserInput userInputColumn = new UserInput();
 
     @Override
     public PlayerMove getNextMove() {
@@ -31,8 +32,8 @@ public class HumanPlayer extends Player {
         while(true){
             userInteraction.say("Please, make your move:");
             try{
-                row = userInput.getMovingIndex( "row");
-                column = userInput.getMovingIndex( "column");
+                row = userInputRow.getMovingIndex( "row");
+                column = userInputColumn.getMovingIndex( "column");
                 if(!board.isCellEmpty(row,column)){
                     userInteraction.sayError("The cell is not empty. Please select other cell.");
                 }else {
