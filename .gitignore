@@ -8,6 +8,7 @@ target/
 tictacproject.iml
 _encodedMsg.txt
 src/META-INF/
+.DS_Store
 
 
 # User-specific stuff:
