@@ -1,5 +1,6 @@
 package com.goit.gojavaonline.tictactoe.view;
 
+import com.goit.gojavaonline.tictactoe.exceptions.NegativeIntegerInputException;
 import com.goit.gojavaonline.tictactoe.exceptions.TooFarFromRangeException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +23,7 @@ public class UserInputTest {
 
     @Test(expected = TooFarFromRangeException.class)
     public void getMovingIndexPassBigInt() throws Exception {
+
         UserInput userInput = new UserInput();
         String input = "100";
 
@@ -30,13 +32,13 @@ public class UserInputTest {
 
         MemberModifier.field(UserInput.class, "userInteraction").set(userInput, mockUI);
 
-
         userInput.getMovingIndex("bigInt");
 
     }
 
     @Test(expected = NegativeIntegerInputException.class)
     public void getMovingIndexPassNegativeInt() throws Exception {
+
         UserInput userInput = new UserInput();
 
         String input = "-1";
@@ -45,7 +47,6 @@ public class UserInputTest {
         when(mockUI.ask("negativeInt: ")).thenReturn(input);
 
         MemberModifier.field(UserInput.class, "userInteraction").set(userInput, mockUI);
-
 
         userInput.getMovingIndex("negativeInt");
 
