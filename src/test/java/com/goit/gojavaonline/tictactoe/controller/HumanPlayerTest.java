@@ -29,14 +29,14 @@ public class HumanPlayerTest {
     @Test(timeout = 1000)
     public void testGetNextMove() throws Exception {
 
-        int InsertRow = 2;
-        int InsertColumn = 2;
+        int insertRow = 2;
+        int insertColumn = 2;
 
         UserInput row = mock(UserInput.class);
-        when(row.getMovingIndex("row")).thenReturn(InsertRow);
+        when(row.getMovingIndex("row")).thenReturn(insertRow);
 
         UserInput column = mock(UserInput.class);
-        when(column.getMovingIndex("column")).thenReturn(InsertColumn);
+        when(column.getMovingIndex("column")).thenReturn(insertColumn);
 
         humanPlayer.userInputRow = row;
         humanPlayer.userInputColumn = column;
