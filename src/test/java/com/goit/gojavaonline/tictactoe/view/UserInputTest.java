@@ -2,6 +2,7 @@ package com.goit.gojavaonline.tictactoe.view;
 
 import com.goit.gojavaonline.tictactoe.exceptions.NegativeIntegerInputException;
 import com.goit.gojavaonline.tictactoe.exceptions.TooFarFromRangeException;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.support.membermodification.MemberModifier;
@@ -21,10 +22,17 @@ import static org.mockito.Mockito.when;
 @PrepareForTest(UserInput.class)
 public class UserInputTest {
 
+    private static UserInput userInput;
+
+    @Before
+    public void setUp() throws Exception {
+        userInput = new UserInput();
+
+    }
+
     @Test(expected = TooFarFromRangeException.class)
     public void getMovingIndexPassBigInt() throws Exception {
 
-        UserInput userInput = new UserInput();
         String input = "100";
 
         UserInteraction mockUI = mock(ConsoleUserInteraction.class);
@@ -38,8 +46,6 @@ public class UserInputTest {
 
     @Test(expected = NegativeIntegerInputException.class)
     public void getMovingIndexPassNegativeInt() throws Exception {
-
-        UserInput userInput = new UserInput();
 
         String input = "-1";
 
