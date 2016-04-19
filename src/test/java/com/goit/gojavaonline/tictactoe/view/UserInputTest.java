@@ -9,8 +9,7 @@ import org.powermock.api.support.membermodification.MemberModifier;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 /**
@@ -47,7 +46,7 @@ public class UserInputTest {
     @Test(expected = NegativeIntegerInputException.class)
     public void getMovingIndexPassNegativeInt() throws Exception {
 
-        String input = "-1";
+        String input = "0";
 
         UserInteraction mockUI = mock(ConsoleUserInteraction.class);
         when(mockUI.ask("negativeInt: ")).thenReturn(input);
@@ -57,5 +56,4 @@ public class UserInputTest {
         userInput.getMovingIndex("negativeInt");
 
     }
-
 }
