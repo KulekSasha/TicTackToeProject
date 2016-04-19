@@ -34,6 +34,10 @@ public class Board {
         }
     }
 
+    public boolean isBoardClear(){
+        return getEmptyCells().size() != Math.pow(DIMENSION, DIMENSION);
+    }
+
     public List<Cell> getEmptyCells() {
         List<Cell> listEmptyCells = new ArrayList<>();
 

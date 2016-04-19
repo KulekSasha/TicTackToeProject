@@ -22,7 +22,7 @@ public class Game {
     public Game(Board board, UserInteraction userInteraction)  {
         if(board == null){
             throw new IllegalArgumentException("Board parameter must not be null");
-        } else if(board.getEmptyCells().size() != Math.pow(Board.DIMENSION, Board.DIMENSION)){
+        } else if(board.isBoardClear()){
             throw new IllegalArgumentException("Board cells shouldn't be filled");
         }
         if(userInteraction == null){
