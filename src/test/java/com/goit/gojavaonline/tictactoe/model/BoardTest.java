@@ -105,6 +105,7 @@ public class BoardTest {
 
     @Test
     public void getEmptyCells() throws Exception {
+        board.clearBoard();
         board.setUpCellContent(0, 0, CellContent.CROSS);
         board.setUpCellContent(1, 1, CellContent.ZERO);
         board.setUpCellContent(2, 2, CellContent.EMPTY);
@@ -117,6 +118,7 @@ public class BoardTest {
 
     @Test
     public void isCellEmpty() throws Exception {
+        board.clearBoard();
         board.setUpCellContent(0, 0, CellContent.CROSS);
         board.setUpCellContent(0, 1, CellContent.ZERO);
 

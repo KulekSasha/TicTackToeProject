@@ -1,7 +1,5 @@
 package com.goit.gojavaonline.tictactoe.controller;
 
-import com.goit.gojavaonline.tictactoe.controller.AiMinMaxPlayer;
-import com.goit.gojavaonline.tictactoe.controller.PlayerMove;
 import com.goit.gojavaonline.tictactoe.model.Board;
 import com.goit.gojavaonline.tictactoe.model.CellContent;
 import com.goit.gojavaonline.tictactoe.view.ConsoleUserInteraction;
@@ -24,18 +22,18 @@ public class AiMinMaxPlayerTest {
     public static void setUpClass() {
         board = new Board();
         userInteraction = new ConsoleUserInteraction();
+        aiMinMaxPlayer = new AiMinMaxPlayer(board, CellContent.ZERO);
     }
 
     @Before
     public void setUp() throws Exception {
         board.clearBoard();
-
     }
 
     @Test
     public void testGetNextCrossMove() throws Exception {
-        board = new Board();
-        aiMinMaxPlayer = new AiMinMaxPlayer(board, CellContent.CROSS);
+//        board = new Board();
+//        aiMinMaxPlayer = new AiMinMaxPlayer(board, CellContent.CROSS);
         board.setUpCellContent(0, 0, CellContent.CROSS);
         board.setUpCellContent(1, 0, CellContent.CROSS);
         board.setUpCellContent(1, 1, CellContent.CROSS);
@@ -53,8 +51,8 @@ public class AiMinMaxPlayerTest {
 
     @Test
     public void testGetNextZeroMove1() throws Exception {
-        board = new Board();
-        aiMinMaxPlayer = new AiMinMaxPlayer(board, CellContent.ZERO);
+//        board = new Board();
+//        aiMinMaxPlayer = new AiMinMaxPlayer(board, CellContent.ZERO);
         board.setUpCellContent(0, 0, CellContent.ZERO);
         board.setUpCellContent(1, 0, CellContent.ZERO);
         board.setUpCellContent(1, 1, CellContent.ZERO);
@@ -72,8 +70,8 @@ public class AiMinMaxPlayerTest {
 
     @Test
     public void testGetNextZeroMove2() throws Exception {
-        board = new Board();
-        aiMinMaxPlayer = new AiMinMaxPlayer(board, CellContent.ZERO);
+//        board = new Board();
+//        aiMinMaxPlayer = new AiMinMaxPlayer(board, CellContent.ZERO);
         board.setUpCellContent(0, 0, CellContent.CROSS);
         board.setUpCellContent(0, 1, CellContent.CROSS);
         board.setUpCellContent(1, 1, CellContent.ZERO);

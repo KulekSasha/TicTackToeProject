@@ -2,6 +2,7 @@ package com.goit.gojavaonline.tictactoe.controller;
 
 import com.goit.gojavaonline.tictactoe.exceptions.NegativeIntegerInputException;
 import com.goit.gojavaonline.tictactoe.exceptions.TooFarFromRangeException;
+import com.goit.gojavaonline.tictactoe.input.UserInput;
 import com.goit.gojavaonline.tictactoe.model.Board;
 import com.goit.gojavaonline.tictactoe.model.CellContent;
 import com.goit.gojavaonline.tictactoe.view.UserInteraction;
@@ -14,19 +15,11 @@ import com.goit.gojavaonline.tictactoe.view.UserInteractionRepository;
 public class HumanPlayer extends Player {
     private static UserInteraction userInteraction = UserInteractionRepository.getDefaultUserInteraction();
 
-    private static int readInt(String input){
-        while(true) {
-            try {
-                return Integer.parseInt( userInteraction.ask(input + ": ") );
-            } catch (NumberFormatException e) {
-                userInteraction.sayError("You have to print Integer value\n");
-            }
-        }
-    }
-
     public HumanPlayer(Board board, CellContent playerSide) {
         super(board, playerSide);
     }
+
+    UserInput userInput = new UserInput();
 
     @Override
     public PlayerMove getNextMove() {
@@ -34,11 +27,12 @@ public class HumanPlayer extends Player {
         int row;
         int column;
 
+
         while(true){
             userInteraction.say("Please, make your move:");
             try{
-                row = getMovingIndex( "row");
-                column = getMovingIndex( "column");
+                row = userInput.getMovingIndex( "row");
+                column = userInput.getMovingIndex( "column");
                 if(!super.board.isCellEmpty(row,column)){
                     userInteraction.sayError("The cell is not empty. Please select other cell.");
                 }else {
@@ -51,17 +45,5 @@ public class HumanPlayer extends Player {
 
         return new PlayerMove(0, row, column);
     }
-
-    private int getMovingIndex(String argument) throws NegativeIntegerInputException, TooFarFromRangeException {
-        int input = readInt(argument) - 1;
-
-        if(input < 0){
-            throw new NegativeIntegerInputException("You should enter an Integer value which is above zero\n");
-        } else if(input >= Board.DIMENSION){
-            throw new TooFarFromRangeException(input, "Your " + argument + "\'s value should be less then " + Board.DIMENSION + "\n");
-        }
-        return input;
-    }
-
 
 }
