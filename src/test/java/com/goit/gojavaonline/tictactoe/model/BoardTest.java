@@ -88,14 +88,14 @@ public class BoardTest {
 
     @Test
     public void clearBoard() {
-        for (int i = 0; i < board.DIMENSION; i++) {
+        for (int i = 0; i < Board.DIMENSION; i++) {
             board.setUpCellContent(i, i, CellContent.CROSS);
         }
 
         board.clearBoard();
 
-        for (int i = 0; i < board.DIMENSION; i++) {
-            for (int j = 0; j < board.DIMENSION; j++) {
+        for (int i = 0; i < Board.DIMENSION; i++) {
+            for (int j = 0; j < Board.DIMENSION; j++) {
                 Assert.assertEquals(CellContent.EMPTY, board.getCells()[i][j].getContent());
             }
         }
@@ -113,7 +113,7 @@ public class BoardTest {
         List<Cell> emptyCells = board.getEmptyCells();
 
         Assert.assertNotNull(emptyCells);
-        Assert.assertEquals("size of list is wrong", (board.DIMENSION * board.DIMENSION) - 2, emptyCells.size());
+        Assert.assertEquals("size of list is wrong", (Board.DIMENSION * Board.DIMENSION) - 2, emptyCells.size());
     }
 
     @Test
