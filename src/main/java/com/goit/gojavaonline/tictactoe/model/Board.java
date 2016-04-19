@@ -35,7 +35,7 @@ public class Board {
     }
 
     public boolean isBoardClear(){
-        return getEmptyCells().size() != Math.pow(DIMENSION, DIMENSION);
+        return getEmptyCells().size() == Math.pow(DIMENSION, 2);
     }
 
     public List<Cell> getEmptyCells() {

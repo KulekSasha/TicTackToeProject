@@ -1,9 +1,7 @@
 package com.goit.gojavaonline.tictactoe.model;
 
-import com.goit.gojavaonline.tictactoe.view.ConsoleUserInteraction;
-import com.goit.gojavaonline.tictactoe.view.UserInteraction;
 import org.junit.Assert;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -14,12 +12,10 @@ import java.util.List;
  */
 public class BoardTest {
     private static Board board;
-    private static UserInteraction userInteraction;
 
-    @BeforeClass
-    public static void setUpClass() {
+    @Before
+    public void setUp() throws Exception {
         board = new Board();
-        userInteraction = new ConsoleUserInteraction();
     }
 
     private void setHorizontalLine(int rowNumber, CellContent cellContent) {
@@ -55,7 +51,6 @@ public class BoardTest {
     public void testHorizontalLinesIsWin() throws Exception {
         for (int i = 0; i < board.getCells().length; i++) {
             setHorizontalLine(i, CellContent.CROSS);
-            userInteraction.drawBoard(board);
 
             Assert.assertTrue(board.isWin(CellContent.CROSS));
             Assert.assertFalse(board.isWin(CellContent.ZERO));
@@ -66,7 +61,6 @@ public class BoardTest {
     public void testVerticalLinesIsWin() throws Exception {
         for (int i = 0; i < board.getCells()[0].length; i++) {
             setVerticalLine(i, CellContent.CROSS);
-            userInteraction.drawBoard(board);
 
             Assert.assertTrue(board.isWin(CellContent.CROSS));
             Assert.assertFalse(board.isWin(CellContent.ZERO));
@@ -76,12 +70,10 @@ public class BoardTest {
     @Test
     public void testDiagonalLinesIsWin() throws Exception {
         setDiagonalLine1(CellContent.CROSS);
-        userInteraction.drawBoard(board);
         Assert.assertTrue(board.isWin(CellContent.CROSS));
         Assert.assertFalse(board.isWin(CellContent.ZERO));
 
         setDiagonalLine2(CellContent.CROSS);
-        userInteraction.drawBoard(board);
         Assert.assertTrue(board.isWin(CellContent.CROSS));
         Assert.assertFalse(board.isWin(CellContent.ZERO));
     }
@@ -103,7 +95,6 @@ public class BoardTest {
 
     @Test
     public void getEmptyCells() throws Exception {
-        board.clearBoard();
         board.setUpCellContent(0, 0, CellContent.CROSS);
         board.setUpCellContent(1, 1, CellContent.ZERO);
         board.setUpCellContent(2, 2, CellContent.EMPTY);
@@ -116,7 +107,6 @@ public class BoardTest {
 
     @Test
     public void isCellEmpty() throws Exception {
-        board.clearBoard();
         board.setUpCellContent(0, 0, CellContent.CROSS);
         board.setUpCellContent(0, 1, CellContent.ZERO);
 
@@ -148,8 +138,6 @@ public class BoardTest {
 
     @Test
     public void toStringTest() throws Exception {
-        board.clearBoard();
-
         board.getCells()[1][1].setContent(CellContent.CROSS);
 
         StringBuilder stringBuilder = new StringBuilder();
@@ -167,8 +155,6 @@ public class BoardTest {
 
     @Test
     public void setUpCellContent() throws Exception {
-        board.clearBoard();
-
         board.getCells()[0][0].setContent(CellContent.ZERO);
         Assert.assertFalse("try to fill ZERO cell with CROSS", board.setUpCellContent(0, 0, CellContent.CROSS));
 
@@ -177,6 +163,17 @@ public class BoardTest {
 
     }
 
+    @Test
+    public void isBoardClearTest() throws Exception {
+        Assert.assertTrue(board.isBoardClear());
+
+        board.setUpCellContent(0, 0, CellContent.ZERO);
+        Assert.assertFalse(board.isBoardClear());
+
+        board.clearBoard();
+        board.setUpCellContent(2, 2, CellContent.CROSS);
+        Assert.assertFalse(board.isBoardClear());
+    }
 
 }
 
