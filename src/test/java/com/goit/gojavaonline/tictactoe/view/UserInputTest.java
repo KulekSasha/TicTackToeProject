@@ -1,10 +1,8 @@
 package com.goit.gojavaonline.tictactoe.view;
 
-import com.goit.gojavaonline.tictactoe.exceptions.NegativeIntegerInputException;
 import com.goit.gojavaonline.tictactoe.exceptions.TooFarFromRangeException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.api.easymock.annotation.Mock;
 import org.powermock.api.support.membermodification.MemberModifier;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
