@@ -11,7 +11,7 @@ public class UserInput {
 
     private static UserInteraction userInteraction = UserInteractionRepository.getDefaultUserInteraction();
 
-    private static int readInt(String input) {
+    protected static int readInt(String input) {
         while (true) {
             try {
                 return Integer.parseInt(userInteraction.ask(input + ": "));
