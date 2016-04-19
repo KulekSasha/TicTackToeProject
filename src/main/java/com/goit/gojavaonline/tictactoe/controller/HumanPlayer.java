@@ -33,7 +33,7 @@ public class HumanPlayer extends Player {
             try{
                 row = userInput.getMovingIndex( "row");
                 column = userInput.getMovingIndex( "column");
-                if(!super.board.isCellEmpty(row,column)){
+                if(!board.isCellEmpty(row,column)){
                     userInteraction.sayError("The cell is not empty. Please select other cell.");
                 }else {
                     break;
