@@ -1,6 +1,5 @@
 package com.goit.gojavaonline.tictactoe.view;
 
-import com.goit.gojavaonline.tictactoe.exceptions.NegativeIntegerInputException;
 import com.goit.gojavaonline.tictactoe.exceptions.TooFarFromRangeException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
