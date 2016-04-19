@@ -19,7 +19,16 @@ public class Game {
     private GameState gameState;
     private UserInteraction userInteraction;
 
-    public Game(Board board, UserInteraction userInteraction) {
+    public Game(Board board, UserInteraction userInteraction)  {
+        if(board == null){
+            throw new IllegalArgumentException("Board parameter must not be null");
+        } else if(board.getEmptyCells().size() != Math.pow(Board.DIMENSION, Board.DIMENSION)){
+            throw new IllegalArgumentException("Board cells shouldn't be filled");
+        }
+        if(userInteraction == null){
+            throw new IllegalArgumentException("User Interaction parameter must not be null");
+        }
+
         this.board = board;
         this.userInteraction = userInteraction;
     }
@@ -29,7 +38,7 @@ public class Game {
         this.playerZero = playerZero;
     }
 
-    public void startGame() {
+    public void startGame(){
         int turn = 1;
         gameState = GameState.PLAYING;
         PlayerMove nextMove;
@@ -93,7 +102,7 @@ public class Game {
         }
     }
 
-    private void playAgain() {
+    private void playAgain(){
         if(userInteraction.ask("Do you want to play once more?\n'Y' - yes\n'any key' - no\n").equals("Y")){
             board.clearBoard();
             startGame();

@@ -99,8 +99,6 @@ public class BoardTest {
                 Assert.assertEquals(CellContent.EMPTY, board.getCells()[i][j].getContent());
             }
         }
-
-
     }
 
     @Test
@@ -131,8 +129,8 @@ public class BoardTest {
 
     @Test
     public void hasEmptyCell() throws Exception {
-        for (int i = 0; i < board.DIMENSION; i++) {
-            for (int j = 0; j < board.DIMENSION; j++) {
+        for (int i = 0; i < Board.DIMENSION; i++) {
+            for (int j = 0; j < Board.DIMENSION; j++) {
                 board.getCells()[i][j].setContent(CellContent.CROSS);
             }
         }
@@ -155,8 +153,8 @@ public class BoardTest {
         board.getCells()[1][1].setContent(CellContent.CROSS);
 
         StringBuilder stringBuilder = new StringBuilder();
-        for (int row = 0; row < board.DIMENSION; ++row) {
-            for (int col = 0; col < board.DIMENSION; ++col) {
+        for (int row = 0; row < Board.DIMENSION; ++row) {
+            for (int col = 0; col < Board.DIMENSION; ++col) {
                 stringBuilder.append(board.getCells()[row][col].getCellContentDescription());
             }
             stringBuilder.append("\n");
