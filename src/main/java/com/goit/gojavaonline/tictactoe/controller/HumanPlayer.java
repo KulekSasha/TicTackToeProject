@@ -2,7 +2,7 @@ package com.goit.gojavaonline.tictactoe.controller;
 
 import com.goit.gojavaonline.tictactoe.exceptions.NegativeIntegerInputException;
 import com.goit.gojavaonline.tictactoe.exceptions.TooFarFromRangeException;
-import com.goit.gojavaonline.tictactoe.input.UserInput;
+import com.goit.gojavaonline.tictactoe.view.UserInput;
 import com.goit.gojavaonline.tictactoe.model.Board;
 import com.goit.gojavaonline.tictactoe.model.CellContent;
 import com.goit.gojavaonline.tictactoe.view.UserInteraction;
