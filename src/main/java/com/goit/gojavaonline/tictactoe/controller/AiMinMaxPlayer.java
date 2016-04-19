@@ -1,4 +1,8 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.controller;
+
+import com.goit.gojavaonline.tictactoe.model.Board;
+import com.goit.gojavaonline.tictactoe.model.Cell;
+import com.goit.gojavaonline.tictactoe.model.CellContent;
 
 import java.util.List;
 
@@ -8,15 +12,15 @@ import java.util.List;
 
 public class AiMinMaxPlayer extends Player {
     private CellContent oppositePlayer = getOppositePlayer(playerSide);
-    private final int initialDepth = 1;
+    private static final int INITIAL_DEPTH = 1;
 
     public AiMinMaxPlayer(Board board, CellContent playerSide) {
         super(board, playerSide);
     }
 
     @Override
-    public PlayerMove getNextMoves() {
-        return minimax(1, this.playerSide);
+    public PlayerMove getNextMove() {
+        return minimax(INITIAL_DEPTH, this.playerSide);
     }
 
 

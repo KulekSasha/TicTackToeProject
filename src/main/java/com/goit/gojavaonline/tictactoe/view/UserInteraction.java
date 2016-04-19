@@ -1,4 +1,6 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.view;
+
+import com.goit.gojavaonline.tictactoe.model.Board;
 
 /**
  * Created by tamila on 4/18/16.

@@ -1,4 +1,4 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +34,10 @@ public class Board {
         }
     }
 
+    public boolean isBoardClear(){
+        return getEmptyCells().size() == Math.pow(DIMENSION, 2);
+    }
+
     public List<Cell> getEmptyCells() {
         List<Cell> listEmptyCells = new ArrayList<>();
 
@@ -55,8 +59,8 @@ public class Board {
         for (int i = 0; i < DIMENSION; i++) {
             hasLine = true;
             for (int j = 0; j < DIMENSION; j++) {
-                if (lineDirection == LineDirection.VERTICAL ?
-                        cells[j][i].getContent() != cellContent : cells[i][j].getContent() != cellContent) {
+                if(lineDirection == LineDirection.VERTICAL && cells[j][i].getContent() != cellContent ||
+                        lineDirection == LineDirection.HORIZONTAL && cells[i][j].getContent() != cellContent){
                     hasLine = false;
                     break;
                 }
@@ -90,7 +94,9 @@ public class Board {
     }
 
     public boolean isWin(CellContent playerSide) {
-        return hasLine(playerSide, LineDirection.HORIZONTAL) || hasLine(playerSide, LineDirection.VERTICAL) || hasLine(playerSide, LineDirection.DIAGONAL);
+        return hasLine(playerSide, LineDirection.HORIZONTAL)
+                || hasLine(playerSide, LineDirection.VERTICAL)
+                || hasLine(playerSide, LineDirection.DIAGONAL);
     }
 
     public boolean hasEmptyCell() {

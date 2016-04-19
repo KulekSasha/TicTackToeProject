@@ -1,4 +1,4 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.model;
 
 /**
  * Created by SashaKulek on 07/04/2016.
@@ -9,7 +9,7 @@ public enum CellContent {
 
     private final String cellContentDescription;
 
-    private CellContent(String value) {
+    CellContent(String value) {
         cellContentDescription = value;
     }
 

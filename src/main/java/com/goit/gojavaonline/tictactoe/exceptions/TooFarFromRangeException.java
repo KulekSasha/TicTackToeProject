@@ -1,4 +1,4 @@
-package com.goit.gojavaonline.tictactoe;
+package com.goit.gojavaonline.tictactoe.exceptions;
 
 /**
  * Created by User on 12.04.2016.
