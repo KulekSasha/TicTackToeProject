@@ -1,6 +1,6 @@
 
 Useful links:
-http://www.dokwork.ru/2012/11/tictactoe.html
-http://blog.circuitsofimagination.com/2014/06/29/MiniMax-and-Tic-Tac-Toe.html
-http://neverstopbuilding.com/minimax
-http://www.flyingmachinestudios.com/programming/minimax/
+1) http://blog.circuitsofimagination.com/2014/06/29/MiniMax-and-Tic-Tac-Toe.html
+2) http://www.flyingmachinestudios.com/programming/minimax/
+3) http://www.dokwork.ru/2012/11/tictactoe.html
+4) http://www.neverstopbuilding.com/minimax
